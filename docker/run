@@ -1,0 +1,11 @@
+project_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )/../" > /dev/null && pwd )"
+image_name="auto_bartender"
+tag="0.1"
+
+# allow access from localhost
+xhost + 127.0.0.1
+
+docker run -it \
+-e MOCK_GPIO="True" \
+-e DISPLAY=host.docker.internal:0 \
+$image_name:$tag

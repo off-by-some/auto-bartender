@@ -6,13 +6,18 @@
 **User should be able to power off the machine with a physical button**
 
 ### Pour Drinks Flow
+**User should be able to search from a pre-selected drink list**
+- Design UI Elements
+- Build UI Elements
+
 **User should be able to select a drink**
 - Gather a list of drink recipes. These will need to have their ingredients in ml
 - Need to curate optimal ingredients for most combinations
 - Design UI Elements
 - Build UI Elements
 
-**User should be able to search from a pre-selected drink list**
+**User should be able to select drink size between “small”, “medium” and “large”**
+- Build functionality to allow changing ratios of drink sizes / pour times
 - Design UI Elements
 - Build UI Elements
 
@@ -29,11 +34,6 @@
 - Design UI Elements
 - Build UI Elements
 
-**User should be able to select drink size between “small”, “medium” and “large”**
-- Build functionality to allow changing ratios of drink sizes / pour times
-- Design UI Elements
-- Build UI Elements
-
 **User should be able to pause for shaking when the drink requires it**
 - Will need a curated list of drinks that require additional instructions
 - Will need a warning that this drink requires a cocktail shaker
@@ -45,7 +45,6 @@
 - Not sure if this is needed
 - Design UI Elements
 - Build UI Elements
-
 
 
 ### Manage Administrators
@@ -60,7 +59,6 @@
 **Administrators should be able to log into settings**
 - Design UI Elements
 - Build UI Elements
-
 
 
 ### Modify Ingredients Flow

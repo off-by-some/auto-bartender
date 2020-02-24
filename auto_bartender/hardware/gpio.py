@@ -21,7 +21,7 @@ class MockGPIO:
 
 
 GPIO = None
-should_mock = os.environ.get("MOCK_GPIO", True)
+should_mock = os.environ.get("MOCK_GPIO", False)
 
 if should_mock:
   GPIO = MockGPIO

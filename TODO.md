@@ -16,7 +16,9 @@
 - Design UI Elements
 - Build UI Elements
 
-**User should be able to initiate a pour**
+**User should be able to initiate a pour of their selected drink**
+- Design UI Elements
+- Build UI Elements
 
 **User should be able to see their drink’s progress**
 - Design UI Elements
@@ -92,6 +94,7 @@
 - **Administrator should be able to start a cleaning cycle**
 - Design UI Elements
 - Build UI Elements
+
 - **Administrator should be able to see the cleaning cycle’s progress**
 - Design UI Elements
 - Build UI Elements
@@ -100,9 +103,9 @@
 - **Administrator should be able to disable drink size selection**
 - Design UI Elements
 - Build UI Elements
+
 - **Administrator should be able to disable password entry into settings**
 - Design UI Elements
 - Build UI Elements
-- **Administrator should be able to start cleaning cycle**
-- Design UI Elements
-- Build UI Elements
+
+

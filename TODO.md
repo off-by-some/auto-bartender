@@ -1,9 +1,4 @@
 # Autobartender
-### User Interface
-**User should be able to press a button on the UI**
-- Should use GTK + Python
-
-**User should be able to power off the machine with a physical button**
 
 ### Pour Drinks Flow
 **User should be able to search from a pre-selected drink list**

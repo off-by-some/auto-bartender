@@ -1,0 +1,11 @@
+.grid {
+  padding-top: 20px;
+  display: inline-grid;
+  row-gap: 10px;
+  align-items: stretch;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+  justify-items: center;
+  grid-template-areas: "selected" "selected" "selected"
+                        "li" "li" "li";
+}

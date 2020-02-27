@@ -1,6 +1,6 @@
-project_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )/../" > /dev/null && pwd )"
+project_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )/../../" > /dev/null && pwd )"
 
-image_name="auto_bartender"
+image_name="auto_bartender_api"
 tag="0.1"
 
 # allow access from localhost

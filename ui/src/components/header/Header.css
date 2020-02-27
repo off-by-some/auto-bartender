@@ -1,0 +1,29 @@
+html {
+  background-color: #F6F5F5;
+}
+
+* {
+  font-family: Roboto;
+}
+
+.header {
+  height: 10%;
+}
+
+.header h1, h2 {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.header h1 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-weight: 300;
+  font-size: 32;
+}
+
+.header h2 {
+  font-weight: 200;
+}

@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-project_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )/../" > /dev/null && pwd )"
-image_name="auto_bartender"
-tag="0.1"
+current_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null && pwd )"
 
-(cd "$project_dir" && docker build -t $image_name:$tag -f docker/Dockerfile .)
-
+# ($current_dir/UI/build & $current_dir/API/build & wait)
+$current_dir/UI/build

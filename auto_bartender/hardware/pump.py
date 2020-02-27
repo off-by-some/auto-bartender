@@ -6,7 +6,6 @@ from .weight import Sensor
 
 class Pump:
 
-
   def __init__(self, name, relay: Relay, ingredient: Ingredient, ml_per_min=100, ):
     self.name = name
     self.ml_per_min = ml_per_min

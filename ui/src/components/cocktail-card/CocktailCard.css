@@ -1,0 +1,61 @@
+p.main {
+
+}
+
+p.secondary {
+  color: #545353;
+}
+
+.cocktail-card {
+  position: relative;
+  cursor: pointer;
+  grid-area: auto;
+}
+
+.cocktail-card, img {
+  height: 200px;
+  width: 250px;
+  border-radius: 7px;
+}
+
+.cocktail-card img {
+  display: block;
+  margin: 0 auto;
+}
+
+.cocktail-card .info-bg, .info {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+}
+
+.cocktail-card p {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.cocktail-card .main {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.cocktail-card .secondary {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cocktail-card .info-bg {
+  background-color: white;
+  opacity: 0.9;
+}
+
+.cocktail-card .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

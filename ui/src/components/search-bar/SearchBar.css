@@ -1,0 +1,11 @@
+.search-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  font-weight: 200;
+  font-size: 32px;
+  margin: 0px 15px 0px 15px;
+  cursor: pointer;
+  user-select: none;
+}
+

@@ -8,15 +8,13 @@ class CocktailCard extends React.Component {
     this.cardRef = React.createRef()
   }
 
-  componentDidUpdate() {
-    if (!this.props.selected) return;
-    this.cardRef.current.scrollIntoView(
-      // {
-      // behavior: "smooth",
-      // block: "start",
-      // inline: "nearest"}
-    )
-    console.log(this.cardRef.current)
+  componentDidUpdate(prevProps) {
+    const justDeselected = !this.props.selected && prevProps.selected;
+    const currentlySelected = this.props.selected;
+
+    if (currentlySelected || justDeselected) {
+      this.cardRef.current.scrollIntoView()
+    }
   }
 
   render() {
@@ -39,7 +37,7 @@ class CocktailCard extends React.Component {
 
     return (
     <div ref={this.cardRef} className={`cocktail-card ${selectedCn}`} onClick={onClick}>
-      <img src="http://placekitten.com/400/400" />
+      <img src="https://picsum.photos/200/300" />
 
       { !this.props.selected &&
           <div className="info-bg">

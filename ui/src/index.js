@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ReactDOM from "react-dom";
 import Header from "./components/header";
 import SearchBar from "./components/search-bar"
 import CocktailCard from "./components/cocktail-card"
 import ScrollableGrid from './components/grid'
+import Fab from './components/fab'
 
 require('typeface-roboto')
 
@@ -11,25 +12,27 @@ const drinks = [
   {
     name: "Mojito",
     ingredients: [
-      { name: "asdsadsadasdsadsadsadasdsadsadas", quantity: "0.3 shots"},
-      { name: "b", quantity: "0.3 shots"},
-      { name: "c", quantity: "0.3 shots"},
-      { name: "dasdsajdjsalkdaslkdjaskldjaslkdjasklda", quantity: "0.3 shots"},
-      { name: "e", quantity: "0.3 shots"},
-      { name: "f", quantity: "0.3 shots"},
+      { name: "Club soda", quantity: "0.3 shots"},
+      { name: "lime", quantity: "0.3 shots"},
+      { name: "white rum", quantity: "0.3 shots"},
+      { name: "fresh mint", quantity: "0.3 shots"},
+      { name: "more", quantity: "0.3 shots"},
+      { name: "stuff", quantity: "0.3 shots"},
       { name: "g", quantity: "0.3 shots"},
+      { name: "p", quantity: "0.3 shots"},
+      { name: "f", quantity: "0.3 shots"},
+      { name: "h", quantity: "0.3 shots"},
+
     ]
   },
   {
-    name: "Tom Collins",
+    name: "AMF",
     ingredients: [
-      { name: "a", quantity: "0.3 shots"},
-      { name: "b", quantity: "0.3 shots"},
-      { name: "c", quantity: "0.3 shots"},
-      { name: "d", quantity: "0.3 shots"},
-      { name: "e", quantity: "0.3 shots"},
-      { name: "f", quantity: "0.3 shots"},
-      { name: "g", quantity: "0.3 shots"},
+      { name: "blue curacao.", quantity: "0.3 shots"},
+      { name: "sour mix", quantity: "0.3 shots"},
+      { name: "gin", quantity: "0.3 shots"},
+      { name: "vodka", quantity: "0.3 shots"},
+      { name: "lemon", quantity: "0.3 shots"},
     ]
   },
   {
@@ -80,6 +83,18 @@ const drinks = [
       { name: "g", quantity: "0.3 shots"},
     ]
   },
+  {
+    name: "The dankinator 2",
+    ingredients: [
+      { name: "a", quantity: "0.3 shots"},
+      { name: "b", quantity: "0.3 shots"},
+      { name: "c", quantity: "0.3 shots"},
+      { name: "d", quantity: "0.3 shots"},
+      { name: "e", quantity: "0.3 shots"},
+      { name: "f", quantity: "0.3 shots"},
+      { name: "g", quantity: "0.3 shots"},
+    ]
+  },
 ]
 
 function App(props) {
@@ -111,6 +126,11 @@ function App(props) {
 
         }
       </ScrollableGrid>
+
+      { selected &&
+        <Fab>+</Fab>
+      }
+
     </div>
   );
 }

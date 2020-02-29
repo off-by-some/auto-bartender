@@ -1,11 +1,12 @@
 import React from "react";
 import "./Grid.css";
 
-export default function CocktailCard(props) {
+export default function ScrollableGrid(props) {
   return (
-  <div className="grid">
-    { props.children }
+  <div className="scrollable-grid">
+    <div className="grid">
+      { props.children }
+    </div>
   </div>
-
   )
 }

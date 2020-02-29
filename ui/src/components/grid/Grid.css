@@ -1,7 +1,19 @@
+.scrollable-grid {
+  margin-top: 20px;
+  height: 342px;
+  overflow-y: scroll;
+}
+
+.grid .selected-card {
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+
 .grid {
-  padding-top: 20px;
+  padding-top: 5px;
   display: inline-grid;
-  row-gap: 10px;
+  column-gap: 20px;
+  row-gap: 20px;
   align-items: stretch;
   grid-template-columns: 1fr 1fr 1fr;
   width: 100%;

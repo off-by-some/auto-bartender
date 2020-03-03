@@ -4,6 +4,10 @@
   overflow-y: scroll;
 }
 
+.scrollable-grid.disabled {
+  overflow-y: hidden;
+}
+
 .grid .selected-card {
   grid-column-start: 1;
   grid-column-end: 4;

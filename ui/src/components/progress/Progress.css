@@ -1,0 +1,21 @@
+.progress {
+  position: relative;
+  height: 10px;
+  display: block;
+  width: 100%;
+  background-color: rgba(79, 132, 239, 0.5);
+  border-radius: 7px;
+  background-clip: padding-box;
+  margin: 0.5rem 0 1rem 0;
+  overflow: hidden;
+}
+
+
+.progress .bar {
+  position: absolute;
+  background-color: inherit;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(79, 132, 239, 1);
+  transition: width .3s linear;
+}

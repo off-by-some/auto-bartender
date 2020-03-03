@@ -1,0 +1,32 @@
+.modal-backdrop, .modal-center {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+.modal-backdrop {
+  background-color: black;
+  opacity: 0.4;
+}
+
+.modal-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-center .modal {
+  height: 277px;
+  width: 287px;
+  background-color: #E5E5E5;
+  z-index: 1;
+  border-radius: 7px;
+  padding: 10px;
+}
+
+.modal .header h1 {
+  font-size: 22px;
+  font-weight: 200;
+}

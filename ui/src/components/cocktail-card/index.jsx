@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import cx from "classnames"
 import React from 'react';
 import "./CocktailCard.css";
 
@@ -17,9 +18,18 @@ class CocktailCard extends React.Component {
     }
   }
 
+
   render() {
-    const selectedCn = this.props.selected ? "selected-card" : ""
-    const onClick = e => this.props.onClick(e, this.props.name)
+    const selectedCn = cx("cocktail-card", {
+      "selected-card": this.props.selected,
+      "disabled": this.props.disabled
+    });
+
+    const onClick = e => {
+      if (this.props.disabled) return;
+      this.props.onClick(e, this.props.name)
+    }
+
     const shortDescription = (
       <p className="secondary">
         { this.props.ingredients.map(x => x.name).join(", ") }
@@ -36,7 +46,7 @@ class CocktailCard extends React.Component {
     );
 
     return (
-    <div ref={this.cardRef} className={`cocktail-card ${selectedCn}`} onClick={onClick}>
+    <div ref={this.cardRef} className={selectedCn} onClick={onClick}>
       <img src="https://picsum.photos/200/300" />
 
       { !this.props.selected &&
@@ -55,6 +65,7 @@ class CocktailCard extends React.Component {
 
 CocktailCard.propTypes = {
   selected: PropTypes.bool,
+  disabled: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   ingredients: PropTypes.arrayOf(PropTypes.shape({

@@ -5,6 +5,8 @@ import SearchBar from "./components/search-bar"
 import CocktailCard from "./components/cocktail-card"
 import ScrollableGrid from './components/grid'
 import Fab from './components/fab'
+import Modal from "./components/modal";
+import Progress from './components/progress';
 
 require('typeface-roboto')
 
@@ -113,8 +115,7 @@ function App(props) {
     <div>
       <Header main="Select Drink" />
       <SearchBar />
-      <ScrollableGrid>
-
+      <ScrollableGrid disableScrolling={!!selected}>
         { drinks.map(x =>
           <CocktailCard
             name={x.name}
@@ -122,6 +123,7 @@ function App(props) {
             onClick={onClickCard}
             key={x.name}
             selected={selected === x.name}
+            disabled={selected != "" && selected != x.name}
           />)
 
         }
@@ -130,6 +132,11 @@ function App(props) {
       { selected &&
         <Fab>+</Fab>
       }
+
+      <Modal>
+        <Header main="Pouring Mojito..." />
+        <Progress percent={20} />
+      </Modal>
 
     </div>
   );

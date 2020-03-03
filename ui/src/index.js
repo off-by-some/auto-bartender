@@ -7,6 +7,7 @@ import ScrollableGrid from './components/grid'
 import Fab from './components/fab'
 import Modal from "./components/modal";
 import Progress from './components/progress';
+import Icon from './components/icon'
 
 require('typeface-roboto')
 
@@ -102,7 +103,7 @@ const drinks = [
 function App(props) {
   const [selected, setSelected] = useState("");
   const [pouring, setPouring] = useState(false);
-
+  const settingsIcon = <Icon name="settings" />
 
   const onClickCard = (e, name) => {
     if (name === selected) return setSelected("");
@@ -116,7 +117,7 @@ function App(props) {
 
   return (
     <div>
-      <Header main="Select Drink" />
+      <Header main="Select Drink" icon={settingsIcon}/>
       <SearchBar />
       <ScrollableGrid disableScrolling={!!selected}>
         { drinks.map(x =>
@@ -138,7 +139,7 @@ function App(props) {
 
       { pouring &&
         <Modal>
-          <Header main={`Pouring ${selected}`} />
+          <Header main={`Pouring ${selected}`}/>
           <Progress percent={20} />
         </Modal>
       }

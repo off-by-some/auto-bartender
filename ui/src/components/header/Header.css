@@ -38,3 +38,9 @@ html {
 .header h2 {
   font-weight: 200;
 }
+
+.header .icon {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}

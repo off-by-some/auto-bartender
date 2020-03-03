@@ -101,14 +101,17 @@ const drinks = [
 
 function App(props) {
   const [selected, setSelected] = useState("");
+  const [pouring, setPouring] = useState(false);
+
 
   const onClickCard = (e, name) => {
     if (name === selected) return setSelected("");
     setSelected(name);
   }
 
-  if (selected) {
-
+  const onClickFab = () => {
+    // start the pour process
+    setPouring(true)
   }
 
   return (
@@ -130,13 +133,16 @@ function App(props) {
       </ScrollableGrid>
 
       { selected &&
-        <Fab>+</Fab>
+        <Fab onClick={onClickFab}>+</Fab>
       }
 
-      <Modal>
-        <Header main="Pouring Mojito..." />
-        <Progress percent={20} />
-      </Modal>
+      { pouring &&
+        <Modal>
+          <Header main={`Pouring ${selected}`} />
+          <Progress percent={20} />
+        </Modal>
+      }
+
 
     </div>
   );

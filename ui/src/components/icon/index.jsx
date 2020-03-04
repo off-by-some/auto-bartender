@@ -10,21 +10,21 @@ export default function(props) {
   let icon;
   switch (props.name) {
     case "settings":
-      icon = <SettingsIcon {...props} />;
+      icon = <SettingsIcon  />;
       break;
     case "change":
-      icon = <ChangeIcon {...props} />
+      icon = <ChangeIcon />
       break;
     case "bubbles":
-      icon = <BubblesIcon {...props} />
+      icon = <BubblesIcon />
       break;
     case "close":
-      icon = <CloseIcon {...props} />
+      icon = <CloseIcon />
       break;
   }
 
   return (
-    <div className={"icon " + props.className }>
+    <div {...props} className={"icon " + props.className } >
       { icon }
     </div>
   );

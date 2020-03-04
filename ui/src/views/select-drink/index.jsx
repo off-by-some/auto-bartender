@@ -5,6 +5,7 @@ import CocktailCard from "../../components/cocktail-card"
 import ScrollableGrid from '../../components/grid'
 import Fab from '../../components/fab'
 import Modal from "../../components/modal";
+import PinEntry from "../../components/pin-entry";
 import Progress from '../../components/progress';
 import Icon from '../../components/icon'
 
@@ -98,50 +99,79 @@ const drinks = [
   },
 ]
 
-export default function SelectDrink(props) {
-  const [selected, setSelected] = useState("");
-  const [pouring, setPouring] = useState(false);
-  const settingsIcon = <Icon name="settings" />
 
-  const onClickCard = (e, name) => {
-    if (name === selected) return setSelected("");
-    setSelected(name);
+export default class SelectDrink extends React.Component {
+  constructor(props) {
+    super(props)
+    this.onClickCard = this.onClickCard.bind(this);
+    this.onClickFab = this.onClickFab.bind(this);
+    this.onCompletePin = this.onCompletePin.bind(this);
+    this.onClickSettings = this.onClickSettings.bind(this);
+
+    this.state = {
+      selected: "",
+      pouring: false,
+      showPin: false,
+    };
   }
 
-  const onClickFab = () => {
-    // start the pour process
-    setPouring(true)
+  onClickCard(e, name) {
+    // Deselect if the user has reselected their card
+    if (name === this.state.selected) {
+      return this.setState({ selected: "" })
+    }
+
+    this.setState({ selected: name });
   }
 
-  return (
-    <div>
-      <Header main="Select Drink" icon={settingsIcon}/>
-      <SearchBar />
-      <ScrollableGrid disableScrolling={!!selected}>
-        { drinks.map(x =>
-          <CocktailCard
-            name={x.name}
-            ingredients={x.ingredients}
-            onClick={onClickCard}
-            key={x.name}
-            selected={selected === x.name}
-            disabled={selected != "" && selected != x.name}
-          />)
+  onClickFab() {
+    this.setState({ pouring: true });
+  }
+
+  onClickSettings() {
+    this.setState({ showPin: true });
+  }
+
+  onCompletePin() {
+    console.log("resetting")
+    this.setState({ showPin: false })
+  }
+
+  render() {
+    const settingsIcon = <Icon name="settings" onClick={this.onClickSettings} />
+
+    return (
+      <div>
+        <Header main="Select Drink" icon={settingsIcon}/>
+        <SearchBar />
+        <ScrollableGrid disableScrolling={!!this.state.selected}>
+          { drinks.map(x =>
+            <CocktailCard
+              name={x.name}
+              ingredients={x.ingredients}
+              onClick={this.onClickCard}
+              key={x.name}
+              selected={this.state.selected === x.name}
+              disabled={this.state.selected != "" && this.state.selected != x.name}
+            />)
+          }
+        </ScrollableGrid>
+
+        { this.state.selected &&
+          <Fab onClick={this.onClickFab}>+</Fab>
         }
-      </ScrollableGrid>
 
-      { selected &&
-        <Fab onClick={onClickFab}>+</Fab>
-      }
+        { this.state.pouring &&
+          <Modal>
+            <Header main={`Pouring ${this.state.selected}`}/>
+            <Progress percent={20} />
+          </Modal>
+        }
 
-      { pouring &&
-        <Modal>
-          <Header main={`Pouring ${selected}`}/>
-          <Progress percent={20} />
-        </Modal>
-      }
-
-
-    </div>
-  );
+        { this.state.showPin &&
+          <PinEntry fields={6} onSubmit={this.onCompletePin} />
+        }
+      </div>
+    );
+  }
 }

@@ -4,7 +4,7 @@ import './Modal.css';
 
 function Modal(props) {
   return (
-    <div className="modal-center">
+    <div id={props.id} className="modal-center">
       <div className="modal">
         {props.children}
       </div>
@@ -16,6 +16,7 @@ function Modal(props) {
 
 Modal.propTypes = {
   children: PropTypes.node,
+  id: PropTypes.string,
 };
 
 export default Modal;

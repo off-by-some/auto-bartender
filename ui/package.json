@@ -29,6 +29,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "file-loader": "^5.1.0",
+    "react-code-input": "^3.9.0",
     "react-hot-loader": "^4.12.19",
     "typeface-roboto": "^0.0.75"
   }

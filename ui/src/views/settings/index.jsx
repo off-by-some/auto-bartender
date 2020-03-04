@@ -28,7 +28,7 @@ export default function SettingsPage() {
         </Card>
 
         <Card>
-          <Icon className={"bubbles-icon"} name="bubbles" />
+          <Icon className="bubbles-icon" name="bubbles" />
           <p className="secondary">Cleaning Cycle</p>
         </Card>
 

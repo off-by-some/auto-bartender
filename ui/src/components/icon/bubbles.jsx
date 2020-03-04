@@ -29,15 +29,15 @@ export default function (props) {
               xlinkHref="#f2ihzZLq"
               opacity="1"
               fill="#000000"
-              fill-opacity="1">
+              fillOpacity="1">
             </use>
           </g>
           <g>
             <use
               xlinkHref="#b24fsdNl8a"
               opacity="1" fill="#ffffff"
-              fill-opacity="1"
+              fillOpacity="1"
             ></use>
-            </g><g><use xlinkHref="#alvC8BLkD" opacity="1" fill="#000000" fill-opacity="1"></use></g><g><use xlinkHref="#aWDEZPZu0" opacity="1" fill="#000000" fill-opacity="1"></use></g><g><use xlinkHref="#c1hhz3Fie2" opacity="1" fill="#000000" fill-opacity="1"></use></g><g><use xlinkHref="#d1YE304RQ" opacity="1" fill="#ffffff" fill-opacity="1"></use><g><use xlinkHref="#d1YE304RQ" opacity="1" fill-opacity="0" stroke="#000000" stroke-width="0" stroke-opacity="1"></use></g></g></g></g></svg>
+            </g><g><use xlinkHref="#alvC8BLkD" opacity="1" fill="#000000" fillOpacity="1"></use></g><g><use xlinkHref="#aWDEZPZu0" opacity="1" fill="#000000" fillOpacity="1"></use></g><g><use xlinkHref="#c1hhz3Fie2" opacity="1" fill="#000000" fillOpacity="1"></use></g><g><use xlinkHref="#d1YE304RQ" opacity="1" fill="#ffffff" fillOpacity="1"></use><g><use xlinkHref="#d1YE304RQ" opacity="1" fillOpacity="0" stroke="#000000" strokeWidth="0" strokeOpacity="1"></use></g></g></g></g></svg>
   );
 }

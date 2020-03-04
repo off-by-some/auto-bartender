@@ -39,8 +39,10 @@ html {
   font-weight: 200;
 }
 
-.header .icon {
+.header .icon svg {
   position: absolute;
   right: 10px;
   cursor: pointer;
+  max-height: 25px;
+  max-width: 25px;
 }

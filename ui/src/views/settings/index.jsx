@@ -11,7 +11,7 @@ import './Settings.css';
 export default function SettingsPage() {
   return (
     <div id="settings">
-      <Header main="Settings" />
+      <Header main="Settings" icon={<Icon name="close" />}/>
 
       <ScrollableGrid>
         <Card>

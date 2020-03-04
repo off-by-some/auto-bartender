@@ -3,6 +3,8 @@ import React from "react";
 import SettingsIcon from "./settings";
 import ChangeIcon from './change';
 import BubblesIcon from './bubbles';
+import CloseIcon from './close';
+
 
 export default function(props) {
   let icon;
@@ -15,6 +17,9 @@ export default function(props) {
       break;
     case "bubbles":
       icon = <BubblesIcon {...props} />
+      break;
+    case "close":
+      icon = <CloseIcon {...props} />
       break;
   }
 

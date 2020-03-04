@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from "../../components/header";
 import SearchBar from "../../components/search-bar"
 import CocktailCard from "../../components/cocktail-card"
@@ -8,6 +8,7 @@ import Modal from "../../components/modal";
 import PinEntry from "../../components/pin-entry";
 import Progress from '../../components/progress';
 import Icon from '../../components/icon'
+import { Redirect } from "react-router-dom";
 
 
 const drinks = [
@@ -112,6 +113,7 @@ export default class SelectDrink extends React.Component {
       selected: "",
       pouring: false,
       showPin: false,
+      passwordSuccessful: null,
     };
   }
 
@@ -132,12 +134,16 @@ export default class SelectDrink extends React.Component {
     this.setState({ showPin: true });
   }
 
+  // TODO: Actual password validation
   onCompletePin() {
-    console.log("resetting")
-    this.setState({ showPin: false })
+    this.setState({ showPin: false, passwordSuccessful: true })
   }
 
   render() {
+    if (this.state.passwordSuccessful) {
+      return <Redirect to="/settings" />
+    }
+
     const settingsIcon = <Icon name="settings" onClick={this.onClickSettings} />
 
     return (

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Redirect } from "react-router-dom";
 import PropTypes from 'prop-types';
 import Icon from '../../components/icon';
 import ScrollableGrid from '../../components/grid';
@@ -9,9 +10,16 @@ import './Settings.css';
 
 
 export default function SettingsPage() {
+  const [exitClicked, setExitClicked] = useState(false)
+  const onClickClose = () => setExitClicked(true)
+
+  if (exitClicked) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <div id="settings">
-      <Header main="Settings" icon={<Icon name="close" />}/>
+      <Header main="Settings" icon={<Icon name="close" onClick={onClickClose} />}/>
 
       <ScrollableGrid>
         <Card>

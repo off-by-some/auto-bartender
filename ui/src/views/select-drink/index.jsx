@@ -127,7 +127,6 @@ export default function SelectDrink(props) {
             selected={selected === x.name}
             disabled={selected != "" && selected != x.name}
           />)
-
         }
       </ScrollableGrid>
 

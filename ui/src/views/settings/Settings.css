@@ -1,0 +1,16 @@
+#settings .card .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75%;
+}
+
+#settings .card .icon svg {
+  height: 85%;
+  width: 85%;
+}
+
+#settings .icon.bubbles-icon svg {
+  height: 150%;
+  width: 150%;
+}

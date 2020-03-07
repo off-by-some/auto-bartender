@@ -1,0 +1,7 @@
+#choose-ingredient {
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  height: 100%;
+}
+

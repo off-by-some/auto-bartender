@@ -4,14 +4,15 @@ import React from "react";
 
 function Card(props) {
   return (
-    <div className="card">
-      { props.children}
+    <div className="card" onClick={props.onClick}>
+      { props.children }
     </div>
   )
 }
 
 Card.propTypes = {
   children: PropTypes.node.isRequired,
+  onClick: PropTypes.func,
 }
 
 export default Card

@@ -1,22 +1,17 @@
 import PropTypes from 'prop-types';
-import cx from "classnames";
 import React from "react";
 import "./Grid.css";
 
-function ScrollableGrid(props) {
-  const scrollableCn = cx({"disabled" : props.disableScrolling });
+function Grid(props) {
   return (
-  <div className={`scrollable-grid ${scrollableCn}`}>
-    <div className="grid">
-      { props.children }
-    </div>
+  <div className="grid">
+    { props.children }
   </div>
   )
 }
 
-ScrollableGrid.propTypes = {
+Grid.propTypes = {
   children: PropTypes.node,
-  disableScrolling: PropTypes.bool,
 }
 
-export default ScrollableGrid;
+export default Grid;

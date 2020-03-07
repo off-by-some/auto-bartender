@@ -2,12 +2,14 @@ import React from 'react';
 import Header from "../../components/header";
 import SearchBar from "../../components/search-bar"
 import CocktailCard from "../../components/cocktail-card"
-import ScrollableGrid from '../../components/grid'
+import Grid from '../../components/grid'
+import ScrollableView from '../../components/scrollable';
 import Fab from '../../components/fab'
 import Modal from "../../components/modal";
 import PinEntry from "../../components/pin-entry";
 import Progress from '../../components/progress';
 import Icon from '../../components/icon'
+
 import { Redirect } from "react-router-dom";
 
 
@@ -150,18 +152,20 @@ export default class SelectDrink extends React.Component {
       <div>
         <Header main="Select Drink" icon={settingsIcon}/>
         <SearchBar />
-        <ScrollableGrid disableScrolling={!!this.state.selected}>
-          { drinks.map(x =>
-            <CocktailCard
-              name={x.name}
-              ingredients={x.ingredients}
-              onClick={this.onClickCard}
-              key={x.name}
-              selected={this.state.selected === x.name}
-              disabled={this.state.selected != "" && this.state.selected != x.name}
-            />)
-          }
-        </ScrollableGrid>
+        <ScrollableView disabled={!!this.state.selected}>
+          <Grid>
+            { drinks.map(x =>
+              <CocktailCard
+                name={x.name}
+                ingredients={x.ingredients}
+                onClick={this.onClickCard}
+                key={x.name}
+                selected={this.state.selected === x.name}
+                disabled={this.state.selected != "" && this.state.selected != x.name}
+              />)
+            }
+          </Grid>
+        </ScrollableView>
 
         { this.state.selected &&
           <Fab onClick={this.onClickFab}>+</Fab>

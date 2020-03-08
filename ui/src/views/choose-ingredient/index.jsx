@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Redirect } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
+
 import PropTypes from 'prop-types';
 import Icon from '../../components/icon';
 import LineItem from '../../components/line-item';
@@ -9,8 +10,12 @@ import './ChooseIngredient.css';
 
 
 export default function ChooseIngredient() {
+  const params = useParams()
   const [exitClicked, setExitClicked] = useState(false)
   const [selectedItem, setSelectedItem] = useState("")
+
+  const secondaryMessage = params.id?
+    `'${params.id}' was successfully saved 👍` : "✨🍾🍺🍶🍷🥃✨"
 
   const onClickClose = () => setExitClicked(true)
   const onClickItem = (e, props) => setSelectedItem(props.main)
@@ -27,7 +32,7 @@ export default function ChooseIngredient() {
     <div id="choose-ingredient">
       <Header
         main="Select an Ingredient to Change"
-        secondary="✨🍾🍺🍶🍷🥃✨"
+        secondary={secondaryMessage}
         icon={<Icon name="close" onClick={onClickClose} />}
       />
 

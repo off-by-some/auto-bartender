@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Redirect } from "react-router-dom";
 import Button from "../../components/Button";
+import Card from "../../components/card";
 import Fab from "../../components/fab";
 import Header from "../../components/header";
 import Icon from '../../components/icon';
@@ -42,7 +43,7 @@ export default function ChooseNewIngredient() {
     selectedItem === "" ? "None Selected" : selectedItem
 
   if (saved) {
-    return <Redirect to="/choose-ingredient" />
+    return <Redirect to={`/choose-ingredient/${selectedItem}/success`} />
   }
 
   if (exitClicked) {
@@ -90,9 +91,13 @@ export default function ChooseNewIngredient() {
           onClickBackground={onClickModalBackground}
         >
           <Header
-            main=""
-            secondary={`Please insert pump #2 into the container of '${selectedIngredient}' and press 'Save'`}
+            main={`Please insert pump #2 into the container of '${selectedIngredient}' and press 'Save'`}
           />
+
+          <Card>
+            <Icon name="bottle" />
+            <Icon name="pump-line" />
+          </Card>
 
           <Button onClick={onClickSave}>
             <p>Save</p>

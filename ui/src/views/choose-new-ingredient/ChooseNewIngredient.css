@@ -15,3 +15,47 @@
 #choose-new-ingredient .information-panel + .information-panel {
   margin-top: 50px;
 }
+
+
+
+
+
+
+
+#insert-pump .modal {
+  height: 345px;
+}
+
+#insert-pump .card {
+  width: 100%;
+  justify-content: end;
+  flex-grow: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+#insert-pump .icon.bottle svg {
+  height: 150px;
+}
+
+@keyframes move-pump-line {
+  from {top: -250px;}
+  to {top: -85px;}
+}
+
+#insert-pump .icon.pump-line svg {
+  transition-property: top;
+  position: absolute;
+  height: 275px;
+  top: -250px;
+  margin-left: 3px;
+  animation: move-pump-line 4s infinite;
+}
+
+#insert-pump .icon.pump-line.inserting svg {
+  top: -85px;
+}
+
+#insert-pump .button {
+  margin-top: 10px;
+}

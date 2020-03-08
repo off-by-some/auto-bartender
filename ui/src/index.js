@@ -15,21 +15,29 @@ require('typeface-roboto')
 function App() {
   return (
     <Switch>
-      <Route path="/settings">
-        <Settings />
-      </Route>
-
-      <Route path="/choose-ingredient/:id/replace">
-        <ChooseNewIngredient />
-      </Route>
-
-      <Route path="/choose-ingredient">
-        <ChooseIngredient />
-      </Route>
-
-      <Route exact path="/">
-        <SelectDrink />
-      </Route>
+      <Route
+        exact
+        path="/"
+        component={SelectDrink}
+      />
+      <Route
+        exact
+        path="/settings"
+        component={Settings}
+      />
+      <Route
+        exact
+        path="/choose-ingredient"
+        component={ChooseIngredient}
+      />
+      <Route
+        path="/choose-ingredient/:id/success"
+        component={ChooseIngredient}
+      />
+      <Route
+        path="/choose-ingredient/:id/replace"
+        component={ChooseNewIngredient}
+      />
     </Switch>
 
   );

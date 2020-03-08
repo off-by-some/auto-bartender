@@ -1,0 +1,16 @@
+
+.information-panel {
+  padding: 0px 30px;
+}
+
+.information-panel p {
+  margin: 0px 20px;
+}
+
+.information-panel p + p {
+  margin-top: 5px;
+}
+
+.information-panel p.secondary {
+  font-size: 20px;
+}

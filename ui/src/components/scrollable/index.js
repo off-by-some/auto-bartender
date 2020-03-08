@@ -5,8 +5,11 @@ import "./Scrollable.css";
 
 function ScrollableView(props) {
   const scrollableCn = cx("scrollable", {"disabled" : props.disabled });
+  const height = props.height || "344px";
+  const styles = { height }
+
   return (
-  <div className={scrollableCn}>
+  <div className={scrollableCn} style={styles}>
     { props.children }
   </div>
   )
@@ -15,6 +18,7 @@ function ScrollableView(props) {
 ScrollableView.propTypes = {
   children: PropTypes.node,
   disabled: PropTypes.bool,
+  height: PropTypes.string,
 }
 
 export default ScrollableView;

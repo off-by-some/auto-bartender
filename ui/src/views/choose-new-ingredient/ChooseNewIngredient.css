@@ -1,0 +1,17 @@
+#choose-new-ingredient .left-panel {
+  width: 60%;
+}
+
+#choose-new-ingredient .right-panel {
+  width: 40%;
+  padding-top: 50px;
+}
+
+#choose-new-ingredient .panel-container {
+  display: flex;
+  margin-top: 10px;
+}
+
+#choose-new-ingredient .information-panel + .information-panel {
+  margin-top: 50px;
+}

@@ -1,48 +1,67 @@
+import cx from "classnames";
 import PropTypes from "prop-types";
 import React from "react";
 import './LineItem.css';
 
-const lineItemPropTypes = {
-  main: PropTypes.string.isRequired,
-  secondary: PropTypes.string.isRequired,
-  onClick: PropTypes.func,
-};
 
 function LineItemLarge(props) {
+  const className = cx("line-item large", props.className);
+
   return (
-    <div className="line-item large" onClick={props.onClick}>
+    <div className={className} onClick={props.onClick}>
       <p className="main">{props.main}</p>
       <p className="secondary">{props.secondary}</p>
   </div>
   );
 }
 
+
 function LineItemSmall(props) {
+  const className = cx("line-item small", props.className);
+
   return (
-    <div className="line-item small" onClick={props.onClick}>
+    <div className={className} onClick={props.onClick}>
       <p className="main">{props.main}</p>
     </div>
   );
 }
 
-function LineItem(props) {
-  const onClick = (e) => props.onClick(e, props)
 
-  const newProps = {
-    ...props,
-    onClick
-  }
+function LineItem(props) {
+  const className = cx({ "selected": props.selected });
+
+  const onClick = (e) => props.onClick(e, props);
+  const newProps = { ...props, onClick, className };
 
   if (props.type === "large") {
     return <LineItemLarge {...newProps} />
+  } else {
+    return <LineItemSmall {...newProps} />
   }
-
-  return <LineItemSmall {...newProps} />
 }
 
-LineItemLarge.propTypes = lineItemPropTypes;
-LineItemSmall.propTypes = lineItemPropTypes;
-LineItem.propTypes = lineItemPropTypes;
+const commonPropTypes = {
+  onClick: PropTypes.func,
+  className: PropTypes.string,
+  main: PropTypes.string.isRequired,
+}
 
+LineItemSmall.propTypes = commonPropTypes;
+
+LineItemLarge.propTypes = {
+  ...commonPropTypes,
+  secondary: PropTypes.string.isRequired
+}
+
+LineItem.propTypes = {
+  ...commonPropTypes,
+  secondary: PropTypes.string,
+  type: PropTypes.string,
+  selected: PropTypes.bool,
+};
+
+LineItem.defaultProps = {
+  onClick: () => null,
+}
 
 export default LineItem;

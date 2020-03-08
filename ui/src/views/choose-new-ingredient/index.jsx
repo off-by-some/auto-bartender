@@ -1,28 +1,37 @@
 import React, { useState } from 'react';
 import { Redirect } from "react-router-dom";
-import Icon from '../../components/icon';
-import Search from '../../components/search';
-import Header from "../../components/header";
-import InfoPanel from "../../components/info-panel";
+import Button from "../../components/Button";
 import Fab from "../../components/fab";
+import Header from "../../components/header";
+import Icon from '../../components/icon';
+import InfoPanel from "../../components/info-panel";
+import Modal from "../../components/modal";
+import Search from '../../components/search';
 
 import './ChooseNewIngredient.css';
 
 const ingredients = [
-  { name: "Rum", key: "rum" },
-  { name: "Vodka", key: "vodka" },
-  { name: "Tequila", key: "tequila" },
-  { name: "Jager", key: "jager" },
-  { name: "Triple Sec", key: "triple sec" },
-  { name: "Blue Curacao", key: "blue curacao" },
-  { name: "Sour Mix", key: "sour mix" },
-  { name: "Lemon Juice", key: "lemon juice" },
-  { name: "Club Soda", key: "club soda" },
+  { name: "Rum", key: "rum", weightPerMl: 2.0 },
+  { name: "Vodka", key: "vodka", weightPerMl: 0.0 },
+  { name: "Tequila", key: "tequila", weightPerMl: 2.0 },
+  { name: "Jager", key: "jager", weightPerMl: 0.0 },
+  { name: "Triple Sec", key: "triple sec", weightPerMl: 2.0 },
+  { name: "Blue Curacao", key: "blue curacao", weightPerMl: 0.0 },
+  { name: "Sour Mix", key: "sour mix", weightPerMl: 2.0 },
+  { name: "Lemon Juice", key: "lemon juice", weightPerMl: 0.0 },
+  { name: "Club Soda", key: "club soda", weightPerMl: 2.0 },
 ]
 
 export default function ChooseNewIngredient() {
   const [exitClicked, setExitClicked] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState("");
+  const [saved, setSaved] = useState(false);
+
+  const onClickModalBackground = (e) => setShowModal(false)
+  const onClickConfirmFab = () => setShowModal(true)
+  const onClickSave = () => setSaved(true)
+
 
   const onClickClose = () => setExitClicked(true);
   const onSelectItem = (item) => {
@@ -32,6 +41,9 @@ export default function ChooseNewIngredient() {
   const selectedIngredient =
     selectedItem === "" ? "None Selected" : selectedItem
 
+  if (saved) {
+    return <Redirect to="/choose-ingredient" />
+  }
 
   if (exitClicked) {
     return <Redirect to="/" />;
@@ -56,10 +68,6 @@ export default function ChooseNewIngredient() {
 
         <div className="right-panel">
           <InfoPanel
-            main="Current Ingredient:"
-            secondary="Rum"
-          />
-          <InfoPanel
             main="Next Ingredient:"
             secondary={selectedIngredient}
           />
@@ -71,10 +79,27 @@ export default function ChooseNewIngredient() {
       </div>
 
       { selectedItem &&
-        <Fab>
+        <Fab onClick={onClickConfirmFab}>
           +
         </Fab>
       }
+
+      { showModal &&
+        <Modal
+          id="insert-pump"
+          onClickBackground={onClickModalBackground}
+        >
+          <Header
+            main=""
+            secondary={`Please insert pump #2 into the container of '${selectedIngredient}' and press 'Save'`}
+          />
+
+          <Button onClick={onClickSave}>
+            <p>Save</p>
+          </Button>
+      </Modal>
+      }
+
     </div>
   );
 }

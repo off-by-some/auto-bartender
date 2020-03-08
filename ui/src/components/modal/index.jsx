@@ -8,7 +8,7 @@ function Modal(props) {
       <div className="modal">
         {props.children}
       </div>
-      <div className="modal-backdrop" />
+      <div className="modal-backdrop" onClick={props.onClickBackground}/>
     </div>
 
   );
@@ -17,6 +17,11 @@ function Modal(props) {
 Modal.propTypes = {
   children: PropTypes.node,
   id: PropTypes.string,
+  onClickBackground: PropTypes.func,
 };
+
+Modal.defaultProps = {
+  onClickBackground: x => x
+}
 
 export default Modal;

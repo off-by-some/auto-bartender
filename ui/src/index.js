@@ -9,6 +9,7 @@ import SelectDrink from './views/select-drink';
 import ChooseIngredient from './views/choose-ingredient';
 import ChooseNewIngredient from './views/choose-new-ingredient';
 import Settings from './views/settings'
+import CleaningCycle from './views/cleaning-cycle';
 
 require('typeface-roboto')
 
@@ -24,6 +25,11 @@ function App() {
         exact
         path="/settings"
         component={Settings}
+      />
+      <Route
+        exact
+        path="/cleaning-cycle"
+        component={CleaningCycle}
       />
       <Route
         exact

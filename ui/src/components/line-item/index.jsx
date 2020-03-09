@@ -9,8 +9,11 @@ function LineItemLarge(props) {
 
   return (
     <div className={className} onClick={props.onClick}>
-      <p className="main">{props.main}</p>
-      <p className="secondary">{props.secondary}</p>
+      <div className="icon-spacer">{props.icon}</div>
+      <div className="text">
+        <p className="main">{props.main}</p>
+        <p className="secondary">{props.secondary}</p>
+      </div>
   </div>
   );
 }
@@ -44,6 +47,7 @@ const commonPropTypes = {
   onClick: PropTypes.func,
   className: PropTypes.string,
   main: PropTypes.string.isRequired,
+  icon: PropTypes.node,
 }
 
 LineItemSmall.propTypes = commonPropTypes;

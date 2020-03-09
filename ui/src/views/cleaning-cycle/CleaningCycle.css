@@ -1,0 +1,14 @@
+.line-item-table .header .line-item {
+  background-color: white;
+  border-radius: 7px 7px 0px 0px;
+  height: 20px;
+  margin-top: 10px;
+}
+
+.line-item-table .scrollable {
+  margin-top: 5px;
+}
+
+.line-item-table .scrollable .line-item:first-child {
+  border-radius:  0px 0px 7px 7px;
+}

@@ -14,7 +14,7 @@ export default class SelectableLineItem extends React.Component {
     this.itemIsSelected = this.itemIsSelected.bind(this);
     this.onSelectAll = this.onSelectAll.bind(this);
     this.allSelected = this.allSelected.bind(this);
-    this.timeEstimate = this.timeEstimate.bind(this);
+    this.propagateItems = this.propagateItems.bind(this);
 
     this.state = { selected: [] }
   }
@@ -36,38 +36,33 @@ export default class SelectableLineItem extends React.Component {
     });
   }
 
-  timeEstimate() {
-    const pumpMap = this.props.items.reduce((a, b) => ({ ...a, [b.id]: b }), {})
-
-    const selectedItems = this.state.selected.map((name) => {
-      return pumpMap[name];
-    })
+  propagateItems() {
+    this.props.onItemsSelected(this.selectedItems());
   }
 
   onSelectAll() {
     if (this.allSelected()) {
-      return this.setState({ selected: [] })
+      return this.setState({ selected: [] }, this.propagateItems)
     }
 
-    this.setState({ selected: this.props.items.map(x => x.id ) });
+    this.setState(
+      { selected: this.props.items.map(x => x.id ) },
+      this.propagateItems
+    );
   }
 
   onClickCheckbox(event, name) {
     const alreadySelected = this.itemIsSelected(name)
 
     if (alreadySelected) {
-      console.log("removing  " + name)
-
       return this.setState({
         selected: this.state.selected.filter(x => x !== name)
-      });
+      }, this.propagateItems);
     }
-
-    console.log("adding " + name)
 
     this.setState({
       selected: this.state.selected.concat([ name ])
-    });
+    }, this.propagateItems);
   }
 
 
@@ -114,9 +109,14 @@ export default class SelectableLineItem extends React.Component {
 }
 
 SelectableLineItem.propTypes = {
+  onItemsSelected: PropTypes.func,
   items: PropTypes.arrayOf(PropTypes.shape({
     main: PropTypes.string.isRequired,
     secondary: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
   }))
+}
+
+SelectableLineItem.defaultProps = {
+  onItemsSelected: x => x
 }

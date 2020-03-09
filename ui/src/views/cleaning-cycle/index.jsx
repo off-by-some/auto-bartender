@@ -30,10 +30,34 @@ export default class CleaningCycle extends React.Component {
 
     this.onClickClose = this.onClickClose.bind(this);
     this.formatPumps = this.formatPumps.bind(this);
+    this.calculateTimeToRun = this.calculateTimeToRun.bind(this);
+    this.formatMinutes = this.formatMinutes.bind(this);
+    this.onItemsSelected = this.onItemsSelected.bind(this);
+
     this.state = {
       exitClicked: false,
+      selected: []
     }
   }
+
+
+  formatMinutes(seconds) {
+    const format = val => `0${Math.floor(val)}`.slice(-2)
+    const minutes = (seconds % 3600) / 60
+
+    return [ minutes, seconds % 60].map(format).join(':')
+   }
+
+
+  calculateTimeToRun() {
+    const runTimes = this.state.selected.map(x => x.timeToRun);
+    console.log(this.state.selected)
+    const runTimeSeconds = runTimes.reduce((a, b) => a + b, 0);
+
+
+    return this.formatMinutes(runTimeSeconds);
+  }
+
 
   formatPumps() {
     return pumps.map(pump => {
@@ -41,12 +65,19 @@ export default class CleaningCycle extends React.Component {
         main: pump.name,
         secondary: `Current Ingredient: ${pump.ingredient}`,
         id: pump.name,
+        ...pump,
       }
     });
   }
 
+
   onClickClose() {
     this.setState({ exitClicked: true });
+  }
+
+
+  onItemsSelected(items) {
+    this.setState({ selected: items });
   }
 
   render() {
@@ -55,6 +86,7 @@ export default class CleaningCycle extends React.Component {
     }
 
     const items = this.formatPumps()
+    const ttr = `${this.calculateTimeToRun()} minutes`;
 
     return (
       <div id="cleaning-cycle">
@@ -66,13 +98,16 @@ export default class CleaningCycle extends React.Component {
 
         <div className="panel-container">
           <div className="left-panel">
-            <SelectableLineItem items={items} />
+            <SelectableLineItem
+              items={items}
+              onItemsSelected={this.onItemsSelected}
+            />
           </div>
 
           <div className="right-panel">
             <InfoPanel
               main="Estimated Runtime:"
-              secondary="00:00 minutes"
+              secondary={ttr}
             />
           </div>
         </div>

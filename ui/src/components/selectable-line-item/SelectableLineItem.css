@@ -12,3 +12,7 @@
 .line-item-table .scrollable .line-item:first-child {
   border-radius:  0px 0px 7px 7px;
 }
+
+.line-item-table .scrollable .line-item:last-child {
+  border-radius:  7px 7px 0px 0px;
+}

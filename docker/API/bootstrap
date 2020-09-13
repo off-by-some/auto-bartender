@@ -4,8 +4,13 @@ PROJECT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}"/../../ )" > /dev/null && pwd 
 
 sudo apt-get update
 sudo apt-get install -y \
-  python3 python3-dev python3-setuptools \
-  python3-pip python3-numpy
+  python3 python3-dev python3-setuptools ftp \
+  python3-pip python3-numpy python3-gpiozero wiringpi git \
+
+
+pip install flask
+
+# nvm install 12.18.3
 
 echo "Installing hx711py"
 (cd $PROJECT_DIR/hx711py && python3 setup.py install)

@@ -1,6 +1,36 @@
 #!/usr/bin/env bash
+# export DOCKER_BUILDKIT=1
 
-current_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null && pwd )"
+script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null && pwd )"
+project_dir="$script_dir/../"
 
-# ($current_dir/UI/build & $current_dir/API/build & wait)
-$current_dir/UI/build
+cd $project_dir
+
+image_name="auto_bartender_api"
+tag="0.1"
+
+docker build -t $image_name:$tag -f $script_dir/Dockerfile .
+
+cd $script_dir
+
+echo "Exporting to bootable linux image...."
+CID=$(docker run -d $image_name:$tag /bin/true)
+docker export -o linux.tar ${CID}
+
+echo "Extracting structure..."
+mkdir linux.dir
+tar -xvf linux.tar -C linux.dir
+
+echo "Exported"
+tar -tf linux.tar | grep -E '^[^/]*/?$'
+
+
+docker run -it \
+		-v `pwd`:/os:rw \
+		-e DISTR=${DISTR} \
+		--privileged \
+		--cap-add SYS_ADMIN \
+		--device /dev/loop0 \
+		debian:latest bash /os/create_image.sh /dev/loop0
+
+rm -rf linux.dir linux.tar

@@ -18,7 +18,7 @@
     "@vue/cli": "^4.2.2",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.4.2",
-    "electron": "^8.0.2",
+    "electron": "^8.5.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "style-loader": "^1.1.3",

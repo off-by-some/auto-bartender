@@ -1,4 +1,6 @@
 import React from 'react';
+import Recipe from "../../api/recipes";
+
 import Header from "../../components/header";
 import SearchBar from "../../components/search-bar"
 import CocktailCard from "../../components/cocktail-card"
@@ -9,99 +11,9 @@ import Modal from "../../components/modal";
 import PinEntry from "../../components/pin-entry";
 import Progress from '../../components/progress';
 import Icon from '../../components/icon'
+import Recipes from '../../api/recipes'
 
 import { Redirect } from "react-router-dom";
-
-
-const drinks = [
-  {
-    name: "Mojito",
-    ingredients: [
-      { name: "Club soda", quantity: "0.3 shots"},
-      { name: "lime", quantity: "0.3 shots"},
-      { name: "white rum", quantity: "0.3 shots"},
-      { name: "fresh mint", quantity: "0.3 shots"},
-      { name: "more", quantity: "0.3 shots"},
-      { name: "stuff", quantity: "0.3 shots"},
-      { name: "g", quantity: "0.3 shots"},
-      { name: "p", quantity: "0.3 shots"},
-      { name: "f", quantity: "0.3 shots"},
-      { name: "h", quantity: "0.3 shots"},
-
-    ]
-  },
-  {
-    name: "AMF",
-    ingredients: [
-      { name: "blue curacao.", quantity: "0.3 shots"},
-      { name: "sour mix", quantity: "0.3 shots"},
-      { name: "gin", quantity: "0.3 shots"},
-      { name: "vodka", quantity: "0.3 shots"},
-      { name: "lemon", quantity: "0.3 shots"},
-    ]
-  },
-  {
-    name: "Jager",
-    ingredients: [
-      { name: "a", quantity: "0.3 shots"},
-      { name: "b", quantity: "0.3 shots"},
-      { name: "c", quantity: "0.3 shots"},
-      { name: "d", quantity: "0.3 shots"},
-      { name: "e", quantity: "0.3 shots"},
-      { name: "f", quantity: "0.3 shots"},
-      { name: "g", quantity: "0.3 shots"},
-    ]
-  },
-  {
-    name: "Old Fashioned",
-    ingredients: [
-      { name: "a", quantity: "0.3 shots"},
-      { name: "b", quantity: "0.3 shots"},
-      { name: "c", quantity: "0.3 shots"},
-      { name: "d", quantity: "0.3 shots"},
-      { name: "e", quantity: "0.3 shots"},
-      { name: "f", quantity: "0.3 shots"},
-      { name: "g", quantity: "0.3 shots"},
-    ]
-  },
-  {
-    name: "Jungle Juice",
-    ingredients: [
-      { name: "a", quantity: "0.3 shots"},
-      { name: "b", quantity: "0.3 shots"},
-      { name: "c", quantity: "0.3 shots"},
-      { name: "d", quantity: "0.3 shots"},
-      { name: "e", quantity: "0.3 shots"},
-      { name: "f", quantity: "0.3 shots"},
-      { name: "g", quantity: "0.3 shots"},
-    ]
-  },
-  {
-    name: "The dankinator",
-    ingredients: [
-      { name: "a", quantity: "0.3 shots"},
-      { name: "b", quantity: "0.3 shots"},
-      { name: "c", quantity: "0.3 shots"},
-      { name: "d", quantity: "0.3 shots"},
-      { name: "e", quantity: "0.3 shots"},
-      { name: "f", quantity: "0.3 shots"},
-      { name: "g", quantity: "0.3 shots"},
-    ]
-  },
-  {
-    name: "The dankinator 2",
-    ingredients: [
-      { name: "a", quantity: "0.3 shots"},
-      { name: "b", quantity: "0.3 shots"},
-      { name: "c", quantity: "0.3 shots"},
-      { name: "d", quantity: "0.3 shots"},
-      { name: "e", quantity: "0.3 shots"},
-      { name: "f", quantity: "0.3 shots"},
-      { name: "g", quantity: "0.3 shots"},
-    ]
-  },
-]
-
 
 export default class SelectDrink extends React.Component {
   constructor(props) {
@@ -112,24 +24,36 @@ export default class SelectDrink extends React.Component {
     this.onClickSettings = this.onClickSettings.bind(this);
 
     this.state = {
-      selected: "",
+      selected: null,
       pouring: false,
       showPin: false,
       passwordSuccessful: null,
+      recipes: [],
     };
   }
 
-  onClickCard(e, name) {
-    // Deselect if the user has reselected their card
-    if (name === this.state.selected) {
-      return this.setState({ selected: "" })
-    }
-
-    this.setState({ selected: name });
+  async componentDidMount() {
+    const data = await Recipe.get();
+    this.setState({ recipes: data });
   }
 
-  onClickFab() {
+  onClickCard(e, name) {
+    const selectedName = this.state.selected? this.state.selected.name : "";
+
+    // Deselect if the user has reselected their card
+    if (name === selectedName) {
+      return this.setState({ selected: null })
+    }
+
+    const selected = this.state.recipes.find(x => x.name === name);
+
+    this.setState({ selected });
+  }
+
+  async onClickFab() {
     this.setState({ pouring: true });
+    const selectedRecipe = this.state.selected;
+    const response = await Recipe.pour(selectedRecipe);
   }
 
   onClickSettings() {
@@ -147,21 +71,23 @@ export default class SelectDrink extends React.Component {
     }
 
     const settingsIcon = <Icon name="settings" onClick={this.onClickSettings} />
-
+    const selectedName = 
+      this.state.selected? this.state.selected.name : "";
+    
     return (
       <div>
-        <Header main="Select Drink" icon={settingsIcon}/>
+        <Header main="Select Drink" rightAction={settingsIcon}/>
         <SearchBar />
         <ScrollableView disabled={!!this.state.selected}>
           <Grid>
-            { drinks.map(x =>
+            { this.state.recipes.map(x =>
               <CocktailCard
                 name={x.name}
                 ingredients={x.ingredients}
                 onClick={this.onClickCard}
                 key={x.name}
-                selected={this.state.selected === x.name}
-                disabled={this.state.selected != "" && this.state.selected != x.name}
+                selected={selectedName === x.name}
+                disabled={selectedName != "" && selectedName != x.name}
               />)
             }
           </Grid>
@@ -173,7 +99,7 @@ export default class SelectDrink extends React.Component {
 
         { this.state.pouring &&
           <Modal>
-            <Header main={`Pouring ${this.state.selected}`}/>
+            <Header main={`Pouring ${selectedName}`}/>
             <Progress percent={20} />
           </Modal>
         }

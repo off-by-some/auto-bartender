@@ -34,6 +34,9 @@ class Sensor:
 
   # Takes which GPIO pins dout and pd_sck are assigned to
   def __init__(self, dout_pin_number: int, sck_pin_number: int):
+    self.dout_pin_number = dout_pin_number
+    self.sck_pin_number = sck_pin_number
+
     # The value of the current sensor
     self.value = 0.0
     self._powered_on = False

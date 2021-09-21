@@ -39,10 +39,16 @@ html {
   font-weight: 200;
 }
 
-.header .icon svg {
+.header .right, .header .left {
   position: absolute;
-  right: 10px;
   cursor: pointer;
+}
+
+.header .right {
+  right: 10px;
+}
+
+.header .icon svg {
   max-height: 25px;
   max-width: 25px;
 }

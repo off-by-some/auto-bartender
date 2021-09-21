@@ -32,7 +32,7 @@ export default function SettingsPage() {
     <div id="settings">
       <Header
         main="Settings"
-        icon={<Icon name="close" onClick={onClickClose} />}
+        rightAction={<Icon name="close" onClick={onClickClose} />}
       />
 
       <ScrollableView>
@@ -50,6 +50,16 @@ export default function SettingsPage() {
           <Card>
             <Icon name="settings" />
             <p className="secondary">Configuration</p>
+          </Card>
+
+          <Card>
+            <Icon name="change" />
+            <p className="secondary">Add Ingredient</p>
+          </Card>
+
+          <Card>
+            <Icon name="change" />
+            <p className="secondary">Add Recipe</p>
           </Card>
         </Grid>
       </ScrollableView>

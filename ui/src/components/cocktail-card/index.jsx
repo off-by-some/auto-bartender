@@ -1,7 +1,9 @@
+import _ from "lodash";
 import PropTypes from 'prop-types';
 import cx from "classnames"
 import React from 'react';
 import "./CocktailCard.css";
+import { convertUnitToShots } from "../../util";
 
 class CocktailCard extends React.Component {
   constructor(props) {
@@ -17,7 +19,6 @@ class CocktailCard extends React.Component {
       this.cardRef.current.scrollIntoView()
     }
   }
-
 
   render() {
     const selectedCn = cx("cocktail-card", {
@@ -39,7 +40,7 @@ class CocktailCard extends React.Component {
       <ul className="ingredients-listing">
         { this.props.ingredients.map(x =>
           <li key={x.name} className="secondary">
-            {`• ${x.quantity} of ${x.name}`}
+            {`• ${convertUnitToShots(x.unit)} shot(s) of ${x.name}`}
           </li>
         )}
       </ul>
@@ -70,7 +71,10 @@ CocktailCard.propTypes = {
   name: PropTypes.string.isRequired,
   ingredients: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string,
-    quantity: PropTypes.string
+    unit: PropTypes.shape({
+      "amount": PropTypes.int,
+      "type": PropTypes.oneOf(["ml", "oz", "cup"])
+    })
   })),
 }
 

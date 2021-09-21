@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Redirect } from "react-router-dom";
 import Button from "../../components/Button";
 import Card from "../../components/card";
@@ -8,6 +8,10 @@ import Icon from '../../components/icon';
 import InfoPanel from "../../components/info-panel";
 import Modal from "../../components/modal";
 import Search from '../../components/search';
+import Pumps from '../../api/pumps';
+import Ingredients from '../../api/ingredients';
+import { useParams } from 'react-router';
+import { ML_IN_SHOT, roundToHundredth } from '../../util';
 
 import './ChooseNewIngredient.css';
 
@@ -24,14 +28,42 @@ const ingredients = [
 ]
 
 export default function ChooseNewIngredient() {
+  const params = useParams()
   const [exitClicked, setExitClicked] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState("");
   const [saved, setSaved] = useState(false);
+  const [selectedPump, setSelectedPump] = useState({});
+  const [ingredients, setIngredients] = useState([]);
+  const [loaded, setLoaded] = useState(false)
+
+  useEffect(() => {
+    (async () => {
+      if (loaded) { return; }
+
+      const pumps = await Pumps.get();
+      const ingredients = await Ingredients.get();
+      const selectedPump = pumps.find(pump => pump.name === params.id);
+
+      setSelectedPump(selectedPump);
+      setIngredients(ingredients);
+      setLoaded(true);
+
+    })();
+  })
+
+  const searchableIngredients = ingredients.map(x => {
+    x.key = x.name;
+    return x;
+  })
+
 
   const onClickModalBackground = (e) => setShowModal(false)
   const onClickConfirmFab = () => setShowModal(true)
-  const onClickSave = () => setSaved(true)
+  const onClickSave = async () => {
+    await Pumps.updateIngredient(selectedPump.name, selectedItem);
+    setSaved(true)
+   }
 
 
   const onClickClose = () => setExitClicked(true);
@@ -50,19 +82,29 @@ export default function ChooseNewIngredient() {
     return <Redirect to="/" />;
   }
 
+  const secondaryHeaderText = (selectedPump.ingredient ? 
+    `Select an ingredient to replace '${selectedPump.ingredient.name}'` :
+    `Select an ingredient for ${selectedPump.name}`
+  );
+
+  const flowRate = (selectedPump.ml_per_min === undefined ?
+    "" :
+    `${roundToHundredth(selectedPump.ml_per_min / ML_IN_SHOT)} shots per minute`
+  );
+
   return (
     <div id="choose-new-ingredient">
       <Header
         main="Select New Ingredient"
-        secondary="Select an ingredient to replace 'Rum'"
-        icon={<Icon name="close" onClick={onClickClose} />}
+        secondary={secondaryHeaderText}
+        rightAction={<Icon name="close" onClick={onClickClose} />}
       />
 
       <div className="panel-container">
         <div className="left-panel">
           <Search
             height="66vh"
-            items={ingredients}
+            items={searchableIngredients}
             onSelectItem={onSelectItem}
           />
         </div>
@@ -74,7 +116,7 @@ export default function ChooseNewIngredient() {
           />
           <InfoPanel
             main="Pump Flow Rate:"
-            secondary="2 shots per minute"
+            secondary={flowRate}
           />
         </div>
       </div>

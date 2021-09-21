@@ -1,0 +1,18 @@
+{
+    "weight_sensor": {
+        "dout_pin_number": 5,
+        "sck_pin_number": 6
+    },
+    "pumps": [
+        {
+            "name": "Pump 1",
+            "ml_per_min": 100,
+            "pin_number": 15
+        },
+        {
+            "name"  : "Pump 2",
+            "ml_per_min": 100,
+            "pin_number": 15
+        }
+    ]
+}

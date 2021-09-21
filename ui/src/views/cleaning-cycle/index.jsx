@@ -93,7 +93,7 @@ export default class CleaningCycle extends React.Component {
         <Header
           main="Cleaning Cycle"
           secondary="Select the pumps you would like to run a cleaning cycle on"
-          icon={<Icon name="close" onClick={this.onClickClose} />}
+          rightAction={<Icon name="close" onClick={this.onClickClose} />}
         />
 
         <div className="panel-container">

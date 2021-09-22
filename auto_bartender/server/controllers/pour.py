@@ -6,7 +6,7 @@ from auto_bartender.core.ingredient import Ingredient
 from auto_bartender.server.services.pour import pour_session_broker, ActivePourInProgress, RecipePourSession
 
 
-@app.route('/pour/<uuid>', methods=['GET'])
+@app.route('/pour_session/<uuid>', methods=['GET'])
 def pour_get(uuid):
   pour_session = pour_session_broker.get_session(uuid)
 

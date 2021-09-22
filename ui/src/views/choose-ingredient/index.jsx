@@ -47,7 +47,6 @@ export default function ChooseIngredient() {
     })();
   })
 
-  console.log('renderinggg')
   const secondaryMessage = params.id?
     `'${params.id}' was successfully saved 👍` : "✨🍾🍺🍶🍷🥃✨"
 

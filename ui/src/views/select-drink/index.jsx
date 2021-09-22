@@ -1,3 +1,4 @@
+import cx from "classnames";
 import React from 'react';
 import Recipe from "../../api/recipes";
 
@@ -8,10 +9,12 @@ import Grid from '../../components/grid'
 import ScrollableView from '../../components/scrollable';
 import Fab from '../../components/fab'
 import Modal from "../../components/modal";
+import Button from "../../components/Button"
 import PinEntry from "../../components/pin-entry";
 import Progress from '../../components/progress';
 import Icon from '../../components/icon'
-import Recipes from '../../api/recipes'
+import PourSession from '../../api/pour-session';
+import './SelectDrink.css';
 
 import { Redirect } from "react-router-dom";
 
@@ -22,19 +25,47 @@ export default class SelectDrink extends React.Component {
     this.onClickFab = this.onClickFab.bind(this);
     this.onCompletePin = this.onCompletePin.bind(this);
     this.onClickSettings = this.onClickSettings.bind(this);
+    this.resetState = this.resetState.bind(this);
 
-    this.state = {
+    this.initialState = {
       selected: null,
       pouring: false,
       showPin: false,
       passwordSuccessful: null,
       recipes: [],
+      progress: 0,
+      completedCounter: 3,
+      completed: false,
     };
+
+    this.state = { ...this.initialState };
   }
 
-  async componentDidMount() {
-    const data = await Recipe.get();
-    this.setState({ recipes: data });
+  componentDidMount() {
+    this.resetState();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (!this.state.completed) { return; }
+    if (prevState.completed) { return; }
+   
+    const countdownTimer = setInterval(() => {
+      const counter = this.state.completedCounter;
+      if (counter == 0) {
+        clearInterval(countdownTimer);
+        this.resetState();
+      }
+
+      this.setState({ completedCounter: counter - 1 })
+    }, 1000)
+
+  }
+
+  async resetState() {
+    this.setState({
+      ...this.initialState,
+      recipes: await Recipe.get()
+    });
   }
 
   onClickCard(e, name) {
@@ -50,10 +81,33 @@ export default class SelectDrink extends React.Component {
     this.setState({ selected });
   }
 
+  pollForStatus(session_id) {
+    // Fake progress bar that adds one every second... should be fine right?
+    const fakeProgress = setInterval(() => {
+      this.setState({ progress: this.state.progress + 1 })
+    }, 1000)
+    
+    const timeout = setInterval(async () => {
+      const response = await PourSession.get(session_id);
+      const { percentage_complete, errors } = response;
+      if (percentage_complete > this.state.progress) {
+        this.setState({ progress: percentage_complete })
+      }
+
+      if (percentage_complete >= 100) {
+        console.log("cleaning up")
+        clearInterval(timeout);
+        clearInterval(fakeProgress);
+        this.setState({ completed: true })
+      }
+    }, 5000)
+  }
+
   async onClickFab() {
     this.setState({ pouring: true });
     const selectedRecipe = this.state.selected;
-    const response = await Recipe.pour(selectedRecipe);
+    const session_id = await Recipe.pour(selectedRecipe);
+    this.pollForStatus(session_id)
   }
 
   onClickSettings() {
@@ -73,9 +127,12 @@ export default class SelectDrink extends React.Component {
     const settingsIcon = <Icon name="settings" onClick={this.onClickSettings} />
     const selectedName = 
       this.state.selected? this.state.selected.name : "";
+
+    const modalHeader = this.state.completed ?
+      "Enjoy!" : `Pouring ${selectedName}`
     
     return (
-      <div>
+      <div id="select-drink">
         <Header main="Select Drink" rightAction={settingsIcon}/>
         <SearchBar />
         <ScrollableView disabled={!!this.state.selected}>
@@ -99,8 +156,14 @@ export default class SelectDrink extends React.Component {
 
         { this.state.pouring &&
           <Modal>
-            <Header main={`Pouring ${selectedName}`}/>
-            <Progress percent={20} />
+            <Header main={modalHeader}/>
+            <div className={cx('modal-footer', { completed: this.state.completed })}>
+              <Progress percent={this.state.progress} />
+              { this.state.completed &&
+                  <Button>Returning in {this.state.completedCounter}...</Button>
+              }
+            </div>
+            
           </Modal>
         }
 

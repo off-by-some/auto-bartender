@@ -1,5 +1,6 @@
 from auto_bartender.hardware import controller
-from auto_bartender.core.ingredient import _ingredients, add_ingredient, Ingredient
+from auto_bartender.core.ingredient import Ingredient
+from auto_bartender.data.ingredients import get_ingredients, add_ingredient
 from auto_bartender.server.app import app
 from auto_bartender.server.helpers import required_properties, error
 
@@ -13,13 +14,13 @@ def handle_ingredients():
     elif request.method == 'GET':
         return ingredients_get()
 
-###############
+####################
 # GET /ingredients #
 # Returns the list of ingredients we currently have saved
 def ingredients_get():
-    return jsonify(_ingredients)
+    return jsonify([x.to_json() for x in get_ingredients()])
 
-###############
+####################
 # PUT /ingredients #
 # Adds a new ingredient
 @required_properties("name")

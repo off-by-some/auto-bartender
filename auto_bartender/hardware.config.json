@@ -13,6 +13,26 @@
             "name"  : "Pump 2",
             "ml_per_min": 100,
             "pin_number": 15
+        },
+        {
+            "name"  : "Pump 3",
+            "ml_per_min": 100,
+            "pin_number": 15
+        },
+        {
+            "name"  : "Pump 4",
+            "ml_per_min": 100,
+            "pin_number": 15
+        },
+        {
+            "name"  : "Pump 5",
+            "ml_per_min": 100,
+            "pin_number": 15
+        },
+        {
+            "name"  : "Pump 6",
+            "ml_per_min": 100,
+            "pin_number": 15
         }
     ]
 }

@@ -37,13 +37,12 @@ def handle_clean():
         }, 404)
 
     try:
-        pour_session = pour_session_broker.new(CleanPourSession, found_pumps)
+        clean_session = pour_session_broker.new(CleanPourSession, found_pumps)
     except ActivePourInProgress:
         return construct_active_session_error()
 
-    import ipdb; ipdb.set_trace()
-    pour_session.start()
+    clean_session.start()
     
     return jsonify({
-        "session_id": pour_session.id
+        "session_id": clean_session.id
     })

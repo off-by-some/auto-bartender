@@ -15,9 +15,13 @@
         "name": "Blue Curacao"
     },
     {
-        "name": "Blue Curacao"
+        "name": "Lemon Juice"
     },
     {
-        "name": "Lemon Juice"
+        "name": "Frangelico Hazelnut Liqueur"
+    },
+    {
+        "name": "Vanilla Vodka",
+        "unit": null
     }
 ]

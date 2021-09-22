@@ -22,7 +22,7 @@ class Session:
       try:
         ret = self.pour()
       except Exception as e:
-        self.errors.append(e.message)
+        self.errors.append(str(e))
         raise e
       finally:
         self.broker.deregister(self)

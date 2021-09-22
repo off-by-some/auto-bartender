@@ -31,9 +31,9 @@ class SessionBroker:
       if pour_session.id == id:
         return pour_session
 
-  def new(self, kls, *args, **kwargs):
+  def new(self, session_kls, *args, **kwargs):
     self._raise_if_active_session()
-    return kls(self, *args, **kwargs)
+    return session_kls(self, *args, **kwargs)
 
   def _raise_if_active_session(self):
     if self.active_pour_session:

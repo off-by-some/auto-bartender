@@ -1,0 +1,13 @@
+[
+    {
+      "name": "Long Island Iced Tea",
+      "ingredients": [
+        {"name": "Vodka", "unit": { "amount": 44, "type": "ml" } },
+        {"name": "White Rum",      "unit": { "amount": 44, "type": "ml" } },
+        {"name": "Tequila",        "unit": { "amount": 44, "type": "ml" } },
+        {"name": "Triple-Sec",     "unit": { "amount": 44, "type": "ml" } },
+        {"name": "Sweet and Sour", "unit": { "amount": 22, "type": "ml" } },
+        {"name": "Coke",           "unit": { "amount": 118, "type": "ml" } }
+      ]
+    }
+]

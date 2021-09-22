@@ -1,5 +1,5 @@
 from auto_bartender.hardware import controller
-from auto_bartender.core.ingredient import find_ingredient
+from auto_bartender.data.ingredients import find_ingredient
 from auto_bartender.server.app import app
 from auto_bartender.server.helpers import required_properties, error
 

@@ -5,8 +5,10 @@ class Recipes {
         return ApiClient.get('/recipes')
     }
 
-    pour(recipe) {
-        return ApiClient.post('/pour', { ingredients: recipe.ingredients })
+    async pour(recipe) {
+        const response = await ApiClient.post('/pour', { ingredients: recipe.ingredients })
+
+        return response.session_id;
     }
 }
 

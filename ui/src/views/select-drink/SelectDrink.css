@@ -1,0 +1,7 @@
+#select-drink .modal-footer {
+    width: 100%;
+}
+
+#select-drink .modal-footer.completed .progress {
+    margin: 0.5rem 0 0.5rem 0;
+}

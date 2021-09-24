@@ -6,7 +6,7 @@ from auto_bartender.server.helpers import required_properties, error
 from auto_bartender.server.services.recipe import recipe_service
 
 
-@app.route('/recipes', methods=['GET', 'POST'])
+@app.route('/api/recipes', methods=['GET', 'POST'])
 def handle_recipes():
     if request.method == 'POST':
         return recipes_post()

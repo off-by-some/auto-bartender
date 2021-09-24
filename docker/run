@@ -5,4 +5,4 @@ project_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )/../" > /dev/null && pwd )"
 current_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null && pwd )"
 source $current_dir/.tag
 
-(cd "$project_dir" && docker build -t $image_name:$image_tag -f docker/Dockerfile .)
+docker run -p 3001:3001 -it $image_name:$image_tag

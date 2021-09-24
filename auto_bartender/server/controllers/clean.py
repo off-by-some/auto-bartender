@@ -11,7 +11,7 @@ from .pour import construct_active_session_error
 # POST /pumps/clean #
 #####################
 # Runs the cleaning cycle on the pumps provided via `pump_ids`. Creates a pour session
-@app.route('/clean', methods=['POST'])
+@app.route('/api/clean', methods=['POST'])
 @required_properties("pump_ids")
 def handle_clean():
     content = request.json

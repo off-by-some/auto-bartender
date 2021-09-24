@@ -5,7 +5,7 @@ from auto_bartender.server.helpers import required_properties, error
 
 from flask import jsonify, request, make_response
 
-@app.route('/pumps', methods=['GET', 'PUT'])
+@app.route('/api/pumps', methods=['GET', 'PUT'])
 def handle_pumps():
     if request.method == 'PUT':
         return pumps_put()

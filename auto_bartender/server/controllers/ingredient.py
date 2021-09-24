@@ -7,7 +7,7 @@ from auto_bartender.server.helpers import required_properties, error
 from flask import Flask, request, make_response
 from flask import jsonify
     
-@app.route('/ingredients', methods=['GET', 'POST'])
+@app.route('/api/ingredients', methods=['GET', 'POST'])
 def handle_ingredients():
     if request.method == 'POST':
         return ingredients_post()

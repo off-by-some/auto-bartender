@@ -1,8 +1,13 @@
 import axios from 'axios'
 
+let baseURL = "http://localhost:3001/api";
+if (process.env.NODE_ENV === "production") {
+    baseURL = "/api";
+} 
+
 class ApiClient {
     constructor() {
-        this.baseURL = "http://localhost:3001";
+        this.baseURL = baseURL;
         this.client = axios.create({
             baseURL: this.baseURL
         });;

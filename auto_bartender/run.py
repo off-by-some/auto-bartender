@@ -25,10 +25,14 @@ import os
 import sys
 import json
 from auto_bartender.hardware import controller
+from gevent.pywsgi import WSGIServer
 
+is_production = os.environ.get("FLASK_ENV", "").lower() == "production"
 
 if __name__ == '__main__':
-  app.run(host='0.0.0.0', port=3001)
-
-
-
+  if is_production:
+    print("Serving Production Env at 3001")
+    http_server = WSGIServer(('0.0.0.0', 3001), app)
+    http_server.serve_forever()
+  else:
+    app.run(host='0.0.0.0', port=3001)

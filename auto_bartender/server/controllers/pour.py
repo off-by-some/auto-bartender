@@ -6,7 +6,7 @@ from auto_bartender.core.ingredient import Ingredient
 from auto_bartender.server.services.pour import pour_session_broker, ActivePourInProgress, RecipePourSession
 
 
-@app.route('/pour_session/<uuid>', methods=['GET'])
+@app.route('/api/pour_session/<uuid>', methods=['GET'])
 def pour_get(uuid):
   pour_session = pour_session_broker.get_session(uuid)
 
@@ -16,7 +16,7 @@ def pour_get(uuid):
   return jsonify(pour_session.to_json())
 
 
-@app.route('/pour', methods=['POST'])
+@app.route('/api/pour', methods=['POST'])
 @required_properties("ingredients")
 def pour_post():
   content = request.json

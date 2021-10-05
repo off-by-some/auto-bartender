@@ -10,6 +10,10 @@ import ChooseIngredient from './views/choose-ingredient';
 import ChooseNewIngredient from './views/choose-new-ingredient';
 import Settings from './views/settings'
 import CleaningCycle from './views/cleaning-cycle';
+import AddIngredient from './views/add-ingredient';
+import AddRecipe from './views/add-recipe';
+import ManageIngredients from './views/manage-ingredients';
+import ManageRecipes from './views/manage-recipes';
 
 require('typeface-roboto')
 
@@ -43,6 +47,22 @@ function App() {
       <Route
         path="/choose-ingredient/:id/replace"
         component={ChooseNewIngredient}
+      />
+      <Route
+        path="/add-ingredient"
+        component={AddIngredient}
+      />
+      <Route
+        path="/add-recipe"
+        component={AddRecipe}
+      />
+      <Route
+        path="/manage-ingredients"
+        component={ManageIngredients}
+      />
+      <Route
+        path="/manage-recipes"
+        component={ManageRecipes}
       />
     </Switch>
 

@@ -12,3 +12,11 @@
 .line-item-table .scrollable .line-item:first-child {
   border-radius:  0px 0px 7px 7px;
 }
+
+#cleaning-cycle .modal-footer {
+  width: 100%;
+}
+
+#cleaning-cycle .modal-footer.completed .progress {
+  margin: 0.5rem 0 0.5rem 0;
+}

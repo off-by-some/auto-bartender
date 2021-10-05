@@ -1,15 +1,12 @@
-from . import _ingredients, _save_ingredients
+from . import _read_ingredients, _save_ingredients
 from auto_bartender.core.ingredient import Ingredient
 
-
 def get_ingredients():
-    for i in _ingredients:
+    for i in _read_ingredients():
         yield Ingredient(i["name"])
 
 def find_ingredient(f):
-  for i in _ingredients:
-    ingredient = Ingredient(i["name"])
-
+  for ingredient in get_ingredients():
     if f(ingredient):
       return ingredient
 
@@ -20,5 +17,10 @@ def add_ingredient(ingredient):
   if len(existing_ingredients) != 0:
     return
 
-  _ingredients.append(ingredient.to_json())
-  _save_ingredients()
+  ingredients = _read_ingredients()
+  ingredients.append(ingredient)
+  _save_ingredients([x.to_json() for x in ingredients])
+
+def remove_ingredient(ingredient):
+  new_ingredients = [ x for x in get_ingredients() if x.name != ingredient.name]
+  _save_ingredients([ x.to_json() for x in new_ingredients ])

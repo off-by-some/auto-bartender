@@ -27,6 +27,11 @@ class ApiClient {
         const response = await this.client.put(slug, data);
         return response.data;
     }
+
+    async delete(slug, data) {
+        const response = await this.client.delete(slug, data);
+        return response.data;
+    }
 }
 
 export default new ApiClient();

@@ -9,15 +9,18 @@ import Header from "../../components/header";
 import './Settings.css';
 
 
-
 export default function SettingsPage() {
   const [exitClicked, setExitClicked] = useState(false)
   const [changeIngredientClicked, setChangeIngredientClicked] = useState(false)
   const [cleaningCycleClicked, setCleaningCycleClicked] = useState(false)
+  const [manageIngredientsClicked, setManageIngredientsClicked] = useState(false)
+  const [manageRecipeClicked, setManageRecipeClicked] = useState(false)
 
   const onClickClose = () => setExitClicked(true)
   const onClickChangeIngredient = () => setChangeIngredientClicked(true)
   const onClickCleaningCycle = () => setCleaningCycleClicked(true)
+  const onClickmanageIngredients = () => setManageIngredientsClicked(true)
+  const onClickAddRecipe = () => setManageRecipeClicked(true)
 
 
   if (exitClicked) {
@@ -26,8 +29,12 @@ export default function SettingsPage() {
     return <Redirect to="/choose-ingredient" />;
   } else if (cleaningCycleClicked) {
     return <Redirect to="/cleaning-cycle" />;
+  } else if (manageIngredientsClicked) {
+    return <Redirect to="/manage-ingredients" />;
+  } else if (manageRecipeClicked) {
+    return <Redirect to="/manage-recipes" />;
   }
-
+  
   return (
     <div id="settings">
       <Header
@@ -52,14 +59,14 @@ export default function SettingsPage() {
             <p className="secondary">Configuration</p>
           </Card>
 
-          <Card>
+          <Card onClick={onClickmanageIngredients}>
             <Icon name="change" />
-            <p className="secondary">Add Ingredient</p>
+            <p className="secondary">Manage Ingredients</p>
           </Card>
 
-          <Card>
+          <Card onClick={onClickAddRecipe}>
             <Icon name="change" />
-            <p className="secondary">Add Recipe</p>
+            <p className="secondary">Add Recipes</p>
           </Card>
         </Grid>
       </ScrollableView>

@@ -163,7 +163,6 @@ export default class SelectDrink extends React.Component {
                   <Button>Returning in {this.state.completedCounter}...</Button>
               }
             </div>
-            
           </Modal>
         }
 

@@ -8,6 +8,10 @@ class Ingredients {
     create(ingredientName) {
         return ApiClient.post('/ingredients', { name: ingredientName })
     }
+
+    delete(ingredientName) {
+        return ApiClient.delete('/ingredients', { data: { name: ingredientName }})
+    }
 }
 
 export default new Ingredients();

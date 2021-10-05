@@ -10,3 +10,7 @@
   cursor: pointer;
   font-weight: 200;
 }
+
+.button.disabled {
+  opacity: 0.4;
+}

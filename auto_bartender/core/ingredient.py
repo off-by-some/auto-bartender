@@ -28,6 +28,21 @@ class Ingredient:
       self.unit = None
 
   @property
+  def recipe_count(self):
+    # TODO: FIXME: Yeah... 
+    from auto_bartender.data.recipes import get_recipes
+
+    # An ingredient is always a recipe by itself
+    ret = 1
+    for recipe in get_recipes():
+
+      for ingredient in recipe.ingredients:
+        if ingredient.name == self.name:
+          ret += 1
+
+    return ret
+
+  @property
   def weight_per_ml(self):
     if self.prime_weight == 0: return 0
 
@@ -37,6 +52,7 @@ class Ingredient:
     ret = {
       "name": self.name,
       "unit": None,
+      "recipe_count": self.recipe_count
     }
 
     if self.unit is not None:

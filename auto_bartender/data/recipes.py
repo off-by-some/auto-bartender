@@ -1,8 +1,8 @@
-from . import _recipes, _save_recipes
+from . import _read_recipes, _save_recipes
 from auto_bartender.core.recipe import Recipe
 
 def get_recipes():
-    for i in _recipes:
+    for i in _read_recipes():
         yield Recipe.from_json(i)
 
 def find_recipe(f):
@@ -17,5 +17,6 @@ def add_recipe(recipe):
   if len(existing_recipes) != 0:
     return
 
-  _recipes.append(recipe.to_json())
-  _save_recipes()
+  recipes = _read_recipes()
+  recipes.append(recipe)
+  _save_recipes([ x.to_json() for x in recipes ])

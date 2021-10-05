@@ -26,7 +26,7 @@ should_mock = os.environ.get("MOCK_GPIO", False)
 if should_mock:
   GPIO = MockGPIO
 else:
-  import RPi
-  GPIO = RPi.GPIO
+  import RPi.GPIO as _GPIO
+  GPIO = _GPIO
 
 

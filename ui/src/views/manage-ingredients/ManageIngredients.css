@@ -1,0 +1,28 @@
+#manage-ingredients .right-panel {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+#manage-ingredients .right-panel .information-panel {
+    padding: 0px;
+}
+
+#manage-ingredients .right-panel .information-panel p {
+    margin: 0px;
+}
+
+#manage-ingredients .right-panel .information-panel p.secondary {
+    margin-top: 10px;
+}
+
+#manage-ingredients .right-panel .action {
+    flex-grow: 1;
+    flex-direction: column-reverse;
+    display: flex;
+}
+
+#manage-ingredients input {
+    width: 100%;
+}

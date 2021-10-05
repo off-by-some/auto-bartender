@@ -15,18 +15,6 @@ import { ML_IN_SHOT, roundToHundredth } from '../../util';
 
 import './ChooseNewIngredient.css';
 
-const ingredients = [
-  { name: "Rum", key: "rum", weightPerMl: 2.0 },
-  { name: "Vodka", key: "vodka", weightPerMl: 0.0 },
-  { name: "Tequila", key: "tequila", weightPerMl: 2.0 },
-  { name: "Jager", key: "jager", weightPerMl: 0.0 },
-  { name: "Triple Sec", key: "triple sec", weightPerMl: 2.0 },
-  { name: "Blue Curacao", key: "blue curacao", weightPerMl: 0.0 },
-  { name: "Sour Mix", key: "sour mix", weightPerMl: 2.0 },
-  { name: "Lemon Juice", key: "lemon juice", weightPerMl: 0.0 },
-  { name: "Club Soda", key: "club soda", weightPerMl: 2.0 },
-]
-
 export default function ChooseNewIngredient() {
   const params = useParams()
   const [exitClicked, setExitClicked] = useState(false);

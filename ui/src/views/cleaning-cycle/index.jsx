@@ -1,28 +1,19 @@
 import React from 'react';
+import cx from 'classnames';
 import { Redirect } from "react-router-dom";
-import LineItem from '../../components/line-item';
 import Fab from "../../components/fab";
 import Header from "../../components/header";
 import Icon from '../../components/icon';
 import InfoPanel from "../../components/info-panel";
-import ScrollableView from '../../components/scrollable';
-import Checkbox from "../../components/checkbox";
+import Progress from '../../components/progress';
+import Pumps from '../../api/pumps';
+import PourSession from '../../api/pour-session';
+import CleanSession from '../../api/clean';
 import SelectableLineItem from "../../components/selectable-line-item";
+import Modal from "../../components/modal";
+import Button from "../../components/Button"
 
 import './CleaningCycle.css';
-
-const pumps = [
-  { name: "Pump 1", ingredient: "Vodka", timeToRun: 60 },
-  { name: "Pump 2", ingredient: "Bourbon", timeToRun: 60 },
-  { name: "Pump 3", ingredient: "Gin", timeToRun: 60 },
-  { name: "Pump 4", ingredient: "Tequila", timeToRun: 60 },
-  { name: "Pump 5", ingredient: "Triple Sec", timeToRun: 60 },
-  { name: "Pump 6", ingredient: "Lemon Juice", timeToRun: 60 },
-  { name: "Pump 8", ingredient: "Empty", timeToRun: 60 },
-  { name: "Pump 9", ingredient: "Empty", timeToRun: 60 },
-  { name: "Pump 10", ingredient: "Empty", timeToRun: 60 },
-  { name: "Pump 11", ingredient: "Empty", timeToRun: 60 },
-]
 
 export default class CleaningCycle extends React.Component {
   constructor(props) {
@@ -33,13 +24,46 @@ export default class CleaningCycle extends React.Component {
     this.calculateTimeToRun = this.calculateTimeToRun.bind(this);
     this.formatMinutes = this.formatMinutes.bind(this);
     this.onItemsSelected = this.onItemsSelected.bind(this);
+    this.onClickFab = this.onClickFab.bind(this);
+    this.pollForStatus = this.pollForStatus.bind(this);
+    this.resetState = this.resetState.bind(this);
 
-    this.state = {
+    this.initialState = {
       exitClicked: false,
-      selected: []
+      selected: [],
+      pumps: [],
+      completed: false,
+      cleaning: false,
+      progress: 0,
+      completedCounter: 3,
     }
+    this.state = { ...this.initialState };
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (!this.state.completed) { return; }
+    if (prevState.completed) { return; }
+   
+    const countdownTimer = setInterval(() => {
+      const counter = this.state.completedCounter;
+      if (counter == 0) {
+        clearInterval(countdownTimer);
+        this.resetState();
+      }
+
+      this.setState({ completedCounter: counter - 1 })
+    }, 1000)
+
+  }
+
+  async componentDidMount() {
+    const pumps = await Pumps.get();
+    this.setState({ pumps })
+  }
+
+  resetState() {
+    this.setState({ ...this.initialState, pumps: this.state.pumps });
+  }
 
   formatMinutes(seconds) {
     const format = val => `0${Math.floor(val)}`.slice(-2)
@@ -50,20 +74,49 @@ export default class CleaningCycle extends React.Component {
 
 
   calculateTimeToRun() {
-    const runTimes = this.state.selected.map(x => x.timeToRun);
-    console.log(this.state.selected)
+    const runTimes = this.state.selected.map(x => x.seconds_needed_to_clean);
     const runTimeSeconds = runTimes.reduce((a, b) => a + b, 0);
-
 
     return this.formatMinutes(runTimeSeconds);
   }
 
+  async onClickFab() {
+    this.setState({ cleaning: true });
+    const pumpIds = this.state.selected.map(x => x.name);
+    const { session_id } = await CleanSession.run(pumpIds);
+    this.pollForStatus(session_id)
+  }
+
+  pollForStatus(session_id) {
+    // Fake progress bar that adds one every second... should be fine right?
+    const fakeProgress = setInterval(() => {
+      this.setState({ progress: this.state.progress + 1 })
+    }, 1000)
+    
+    const timeout = setInterval(async () => {
+      const response = await PourSession.get(session_id);
+      const { percentage_complete, errors } = response;
+      if (percentage_complete > this.state.progress) {
+        this.setState({ progress: percentage_complete })
+      }
+
+      if (percentage_complete >= 100) {
+        console.log("cleaning up")
+        clearInterval(timeout);
+        clearInterval(fakeProgress);
+        this.setState({ completed: true })
+      }
+    }, 5000)
+  }
 
   formatPumps() {
-    return pumps.map(pump => {
+    return this.state.pumps.map(pump => {
+      const secondaryText = pump.ingredient ?
+        `Current Ingredient: ${pump.ingredient.name}` : `No Ingredient Configured`
+
       return {
         main: pump.name,
-        secondary: `Current Ingredient: ${pump.ingredient}`,
+        secondary: secondaryText,
         id: pump.name,
         ...pump,
       }
@@ -74,7 +127,6 @@ export default class CleaningCycle extends React.Component {
   onClickClose() {
     this.setState({ exitClicked: true });
   }
-
 
   onItemsSelected(items) {
     this.setState({ selected: items });
@@ -87,34 +139,54 @@ export default class CleaningCycle extends React.Component {
 
     const items = this.formatPumps()
     const ttr = `${this.calculateTimeToRun()} minutes`;
+    const modalHeader = "Cleaning..."
 
     return (
       <div id="cleaning-cycle">
-        <Header
-          main="Cleaning Cycle"
-          secondary="Select the pumps you would like to run a cleaning cycle on"
-          rightAction={<Icon name="close" onClick={this.onClickClose} />}
-        />
+        { !this.state.cleaning &&
+          <Header
+            main="Cleaning Cycle"
+            secondary="Select the pumps you would like to run a cleaning cycle on"
+            rightAction={<Icon name="close" onClick={this.onClickClose} />}
+          />
+        }
 
-        <div className="panel-container">
-          <div className="left-panel">
-            <SelectableLineItem
-              items={items}
-              onItemsSelected={this.onItemsSelected}
-            />
+        { !this.state.cleaning && 
+          <div className="panel-container">
+            <div className="left-panel">
+              <SelectableLineItem
+                items={this.state.cleaning ? [] : items}
+                onItemsSelected={this.onItemsSelected}
+              />
+            </div>
+
+            <div className="right-panel">
+              <InfoPanel
+                main="Estimated Runtime:"
+                secondary={ttr}
+              />
+            </div>
           </div>
+        }
 
-          <div className="right-panel">
-            <InfoPanel
-              main="Estimated Runtime:"
-              secondary={ttr}
-            />
-          </div>
-        </div>
+        { this.state.selected.length !== 0 && 
+          <Fab onClick={this.onClickFab}>
+            +
+          </Fab>
+        }
 
-        <Fab onClick={x => x}>
-          +
-        </Fab>
+        { this.state.cleaning &&
+          <Modal>
+            <Header main={modalHeader}/>
+            <div className={cx('modal-footer', { completed: this.state.completed })}>
+              <Progress percent={this.state.progress} />
+              { this.state.completed &&
+                  <Button>Returning in {this.state.completedCounter}...</Button>
+              }
+            </div>
+         </Modal>
+        }
+
       </div>
     );
   }

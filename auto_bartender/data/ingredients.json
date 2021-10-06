@@ -1,27 +1,42 @@
 [
     {
-        "name": "Vodka"
+        "name": "Vodka",
+        "recipe_count": 2,
+        "unit": null
     },
     {
-        "name": "Bourbon"
+        "name": "Bourbon",
+        "recipe_count": 1,
+        "unit": null
     },
     {
-        "name": "Rum (White)"
+        "name": "Rum (White)",
+        "recipe_count": 1,
+        "unit": null
     },
     {
-        "name": "Triple sec"
+        "name": "Triple sec",
+        "recipe_count": 1,
+        "unit": null
     },
     {
-        "name": "Blue Curacao"
+        "name": "Blue Curacao",
+        "recipe_count": 1,
+        "unit": null
     },
     {
-        "name": "Lemon Juice"
+        "name": "Lemon Juice",
+        "recipe_count": 1,
+        "unit": null
     },
     {
-        "name": "Frangelico Hazelnut Liqueur"
+        "name": "Frangelico Hazelnut Liqueur",
+        "recipe_count": 1,
+        "unit": null
     },
     {
         "name": "Vanilla Vodka",
+        "recipe_count": 1,
         "unit": null
     }
 ]

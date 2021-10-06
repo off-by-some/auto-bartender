@@ -1,13 +1,55 @@
 [
     {
-      "name": "Long Island Iced Tea",
-      "ingredients": [
-        {"name": "Vodka", "unit": { "amount": 44, "type": "ml" } },
-        {"name": "White Rum",      "unit": { "amount": 44, "type": "ml" } },
-        {"name": "Tequila",        "unit": { "amount": 44, "type": "ml" } },
-        {"name": "Triple-Sec",     "unit": { "amount": 44, "type": "ml" } },
-        {"name": "Sweet and Sour", "unit": { "amount": 22, "type": "ml" } },
-        {"name": "Coke",           "unit": { "amount": 118, "type": "ml" } }
-      ]
+        "ingredients": [
+            {
+                "name": "Vodka",
+                "recipe_count": 3,
+                "unit": {
+                    "amount": 44,
+                    "type": "ml"
+                }
+            },
+            {
+                "name": "White Rum",
+                "recipe_count": 3,
+                "unit": {
+                    "amount": 44,
+                    "type": "ml"
+                }
+            },
+            {
+                "name": "Tequila",
+                "recipe_count": 3,
+                "unit": {
+                    "amount": 44,
+                    "type": "ml"
+                }
+            },
+            {
+                "name": "Triple-Sec",
+                "recipe_count": 3,
+                "unit": {
+                    "amount": 44,
+                    "type": "ml"
+                }
+            },
+            {
+                "name": "Sweet and Sour",
+                "recipe_count": 3,
+                "unit": {
+                    "amount": 22,
+                    "type": "ml"
+                }
+            },
+            {
+                "name": "Coke",
+                "recipe_count": 3,
+                "unit": {
+                    "amount": 118,
+                    "type": "ml"
+                }
+            }
+        ],
+        "name": "Long Island Iced Tea"
     }
 ]

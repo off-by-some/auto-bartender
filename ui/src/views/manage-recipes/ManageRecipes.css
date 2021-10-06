@@ -1,0 +1,26 @@
+#manage-recipes p.main {
+    margin: 0;
+}
+
+#manage-recipes .ingredients-list {
+    flex-grow: 1;
+}
+
+#manage-recipes .information-panel {
+    padding: 0;
+}
+
+#manage-recipes .right-panel {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#manage-recipes .ingredients-list .scrollable {
+    height: inherit;
+    flex-grow: 1;
+}
+
+#manage-recipes .ingredients-list li + li {
+    margin-top: 10px;
+}

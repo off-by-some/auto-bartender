@@ -9,7 +9,6 @@ import Button from "../../components/Button";
 import Ingredients from '../../api/ingredients';
 import Pumps from '../../api/pumps';
 
-
 import './ManageIngredients.css';
 
 export default class ManageIngredients extends React.Component {
@@ -66,7 +65,7 @@ export default class ManageIngredients extends React.Component {
     
     await Ingredients.delete(this.state.selected.name);
     const ingredients = await Ingredients.get();
-    this.setState({ ingredients });
+    this.setState({ ingredients, selected: null });
   }
 
   firstPumpWithIngredient() {
@@ -110,7 +109,7 @@ export default class ManageIngredients extends React.Component {
       <div id="manage-ingredients">
         <Header
           main="Manage Ingredients"
-          secondary="Select the ingredient you would like to modify, or create a new one."
+          secondary="Select the ingredient you would like to manage, or create a new one."
           rightAction={<Icon name="close" onClick={this.onClickClose} />}
         />
           <div className="panel-container">

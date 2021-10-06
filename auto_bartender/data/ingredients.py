@@ -17,7 +17,7 @@ def add_ingredient(ingredient):
   if len(existing_ingredients) != 0:
     return
 
-  ingredients = _read_ingredients()
+  ingredients = list(get_ingredients())
   ingredients.append(ingredient)
   _save_ingredients([x.to_json() for x in ingredients])
 

@@ -20,3 +20,7 @@ def add_recipe(recipe):
   recipes = _read_recipes()
   recipes.append(recipe)
   _save_recipes([ x.to_json() for x in recipes ])
+
+def remove_recipe(recipe):
+  new_recipe = [ x for x in get_recipes() if x.name != recipe.name]
+  _save_recipes([ x.to_json() for x in new_recipe ])

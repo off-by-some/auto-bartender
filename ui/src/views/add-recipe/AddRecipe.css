@@ -1,0 +1,11 @@
+#add-recipe .center {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 50px;
+}
+
+#add-recipe .center input {
+    width: 50%;
+}

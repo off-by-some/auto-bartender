@@ -1,4 +1,4 @@
-from auto_bartender.data.recipes import get_recipes
+from auto_bartender.data.recipes import get_recipes, remove_recipe
 from auto_bartender.core.recipe import Recipe
 from auto_bartender.core.ingredient import Ingredient
 from auto_bartender.hardware import controller
@@ -10,6 +10,12 @@ class RecipeService:
             *self.get_usable_recipes()
         ]
         return recipes
+
+    def get_all_recipes(self):
+        return get_recipes()
+
+    def delete_recipe(self, recipe):
+        return remove_recipe(recipe)
 
     # Generates recipes for a single shot of each available configured ingredient
     def generateShotRecipesFromIngredients(self):

@@ -96,7 +96,7 @@ export default class ManageRecipes extends React.Component {
             <div className="right-panel">
               { this.state.selected && 
                 <InfoPanel 
-                  main={`${selectedItem.name || ''}`} 
+                  main={`${selectedItem.name ?? ''}`} 
                 />
               }
               <div className="ingredients-list">
@@ -109,7 +109,7 @@ export default class ManageRecipes extends React.Component {
 
               <div className="action">
                 { this.state.selected && 
-                  <Button onClick={this.onClickDeleteRecipe} style={{"background-color": "rgb(239, 79, 79)"}}>
+                  <Button onClick={this.onClickDeleteRecipe} style={{"backgroundColor": "rgb(239, 79, 79)"}}>
                     Delete Recipe
                   </Button>
                 }

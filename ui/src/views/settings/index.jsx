@@ -54,10 +54,10 @@ export default function SettingsPage() {
             <p className="secondary">Cleaning Cycle</p>
           </Card>
 
-          <Card>
+          {/* <Card>
             <Icon name="settings" />
             <p className="secondary">Configuration</p>
-          </Card>
+          </Card> */}
 
           <Card onClick={onClickmanageIngredients}>
             <Icon name="change" />

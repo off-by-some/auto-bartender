@@ -6,42 +6,42 @@
     "pumps": [
         {
             "name": "Pump 1",
-            "ml_per_min": 100,
+            "ml_per_min": 400,
             "pin_number": 14
         },
         {
             "name"  : "Pump 2",
-            "ml_per_min": 100,
+            "ml_per_min": 400,
             "pin_number": 15
         },
         {
             "name"  : "Pump 3",
-            "ml_per_min": 100,
+            "ml_per_min": 400,
             "pin_number": 18
         },
         {
             "name"  : "Pump 4",
-            "ml_per_min": 100,
+            "ml_per_min": 400,
             "pin_number": 23
         },
         {
             "name"  : "Pump 5",
-            "ml_per_min": 100,
+            "ml_per_min": 400,
             "pin_number": 24
         },
         {
             "name"  : "Pump 6",
-            "ml_per_min": 100,
+            "ml_per_min": 400,
             "pin_number": 25
         },
         {
             "name"  : "Pump 7",
-            "ml_per_min": 100,
+            "ml_per_min": 400,
             "pin_number": 8
         },
         {
             "name"  : "Pump 8",
-            "ml_per_min": 100,
+            "ml_per_min": 400,
             "pin_number": 7
         }
     ]

@@ -51,7 +51,7 @@ export default class SelectDrink extends React.Component {
    
     const countdownTimer = setInterval(() => {
       const counter = this.state.completedCounter;
-      if (counter == 0) {
+      if (counter <= 1) {
         clearInterval(countdownTimer);
         this.resetState();
       }
@@ -84,7 +84,7 @@ export default class SelectDrink extends React.Component {
   pollForStatus(session_id) {
     // Fake progress bar that adds one every second... should be fine right?
     const fakeProgress = setInterval(() => {
-      this.setState({ progress: this.state.progress + 1 })
+      this.setState({ progress: this.state.progress + 0.20 })
     }, 1000)
     
     const timeout = setInterval(async () => {

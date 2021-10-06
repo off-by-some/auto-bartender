@@ -141,7 +141,7 @@ export default class ManageIngredients extends React.Component {
                   />
                 }
                 { canDelete && this.state.selected && 
-                  <Button disabled={!canDelete} onClick={this.onClickDeleteIngredient} style={{"background-color": "rgb(239, 79, 79)"}}>
+                  <Button disabled={!canDelete} onClick={this.onClickDeleteIngredient} style={{"backgroundColor": "rgb(239, 79, 79)"}}>
                     Delete Ingredient
                   </Button>
                 }

@@ -1,7 +1,7 @@
 [
     {
         "name": "Vodka",
-        "recipe_count": 2,
+        "recipe_count": 3,
         "unit": null
     },
     {
@@ -16,12 +16,12 @@
     },
     {
         "name": "Blue Curacao",
-        "recipe_count": 1,
+        "recipe_count": 2,
         "unit": null
     },
     {
         "name": "Lemon Juice",
-        "recipe_count": 1,
+        "recipe_count": 2,
         "unit": null
     },
     {
@@ -36,27 +36,27 @@
     },
     {
         "name": "Gin",
-        "recipe_count": 1,
+        "recipe_count": 2,
         "unit": null
     },
     {
         "name": "Tequila",
-        "recipe_count": 2,
+        "recipe_count": 3,
         "unit": null
     },
     {
         "name": "Sprite",
-        "recipe_count": 1,
+        "recipe_count": 2,
         "unit": null
     },
     {
         "name": "Light Rum",
-        "recipe_count": 1,
+        "recipe_count": 2,
         "unit": null
     },
     {
         "name": "Sweet and Sour",
-        "recipe_count": 2,
+        "recipe_count": 3,
         "unit": null
     }
 ]

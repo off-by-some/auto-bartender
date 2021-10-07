@@ -3,7 +3,7 @@
         "ingredients": [
             {
                 "name": "Vodka",
-                "recipe_count": 4,
+                "recipe_count": 3,
                 "unit": {
                     "amount": 44,
                     "type": "ml"
@@ -19,7 +19,7 @@
             },
             {
                 "name": "Tequila",
-                "recipe_count": 4,
+                "recipe_count": 3,
                 "unit": {
                     "amount": 44,
                     "type": "ml"
@@ -35,7 +35,7 @@
             },
             {
                 "name": "Sweet and Sour",
-                "recipe_count": 4,
+                "recipe_count": 3,
                 "unit": {
                     "amount": 22,
                     "type": "ml"
@@ -56,7 +56,7 @@
         "ingredients": [
             {
                 "name": "Blue Curacao",
-                "recipe_count": 3,
+                "recipe_count": 2,
                 "unit": {
                     "amount": 0.75,
                     "type": "shot"
@@ -64,7 +64,7 @@
             },
             {
                 "name": "Gin",
-                "recipe_count": 3,
+                "recipe_count": 2,
                 "unit": {
                     "amount": 0.75,
                     "type": "shot"
@@ -80,7 +80,7 @@
             },
             {
                 "name": "Light Rum",
-                "recipe_count": 3,
+                "recipe_count": 2,
                 "unit": {
                     "amount": 0.75,
                     "type": "shot"
@@ -88,7 +88,7 @@
             },
             {
                 "name": "Sprite",
-                "recipe_count": 3,
+                "recipe_count": 2,
                 "unit": {
                     "amount": 0.5,
                     "type": "shot"
@@ -96,7 +96,7 @@
             },
             {
                 "name": "Sweet and Sour",
-                "recipe_count": 4,
+                "recipe_count": 3,
                 "unit": {
                     "amount": 2,
                     "type": "shot"
@@ -104,7 +104,7 @@
             },
             {
                 "name": "Tequila",
-                "recipe_count": 4,
+                "recipe_count": 3,
                 "unit": {
                     "amount": 0.75,
                     "type": "shot"
@@ -112,7 +112,7 @@
             },
             {
                 "name": "Vodka",
-                "recipe_count": 4,
+                "recipe_count": 3,
                 "unit": {
                     "amount": 0.75,
                     "type": "shot"

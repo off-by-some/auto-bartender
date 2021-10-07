@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import cx from "classnames";
 import React from "react";
+import ScrollContainer from 'react-indiana-drag-scroll'
+
 import "./Scrollable.css";
 
 function ScrollableView(props) {
@@ -9,9 +11,9 @@ function ScrollableView(props) {
   const styles = { height }
 
   return (
-  <div className={scrollableCn} style={styles}>
-    { props.children }
-  </div>
+    <ScrollContainer style={styles} className={scrollableCn}>
+      { props.children }
+    </ScrollContainer>
   )
 }
 

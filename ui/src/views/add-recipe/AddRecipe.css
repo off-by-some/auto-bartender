@@ -12,8 +12,8 @@
 
 #add-recipe .background.enabled {
     background-color: #0c0c0dbb;
-    width: 100%;
-    height: 98%;
+    width: 99%;
+    height: 97%;
 }
 
 #add-recipe .scrollable {
@@ -63,6 +63,7 @@
     min-width: 45vw;
     width: auto;
     border-left: 1px solid #b1b1b3;
+    height: 100vh;
 }
 
 #add-recipe .recipe-ingredients {

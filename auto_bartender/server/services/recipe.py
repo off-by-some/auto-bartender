@@ -1,4 +1,4 @@
-from auto_bartender.data.recipes import get_recipes, remove_recipe
+from auto_bartender.data.recipes import get_recipes, remove_recipe, add_recipe
 from auto_bartender.core.recipe import Recipe
 from auto_bartender.core.ingredient import Ingredient
 from auto_bartender.hardware import controller
@@ -6,13 +6,19 @@ from auto_bartender.hardware import controller
 class RecipeService:
     def get_recipes(self):
         recipes = [
+            *self.get_usable_recipes(),
             *self.generateShotRecipesFromIngredients(),
-            *self.get_usable_recipes()
         ]
         return recipes
 
     def get_all_recipes(self):
         return get_recipes()
+
+    def find_recipe(self, name):
+        return next((x for x in self.get_all_recipes() if x.name.lower() == name.lower()), None)
+
+    def create_recipe(self, recipe):
+        return add_recipe(Recipe.from_json(recipe))
 
     def delete_recipe(self, recipe):
         return remove_recipe(recipe)

@@ -29,15 +29,27 @@ function LineItemSmall(props) {
   );
 }
 
+function LineItemBase(props) {
+  const className = cx("line-item", props.className);
+
+  return (
+    <div className={className} onClick={props.onClick}>
+      {props.children}
+    </div>
+  );
+}
+
 
 function LineItem(props) {
-  const className = cx({ "selected": props.selected });
+  const className = cx(props.className, { "selected": props.selected });
 
   const onClick = (e) => props.onClick(e, props);
   const newProps = { ...props, onClick, className };
 
   if (props.type === "large") {
     return <LineItemLarge {...newProps} />
+  } else if (props.type === "base") {
+    return <LineItemBase {...newProps} />
   } else {
     return <LineItemSmall {...newProps} />
   }

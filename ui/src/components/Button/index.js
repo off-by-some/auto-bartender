@@ -4,10 +4,16 @@ import "./Button.css";
 import React from "react";
 
 function Button(props) {
-  let styles = props.style || {};
+  const { onClick, style = {} } = props
+
+  const handleOnClick = (...args) => {
+    if (props.disabled) return;
+
+    return onClick(...args);
+  }
 
   return (
-    <div className={cx("main button", { disabled: props.disabled })} style={props.style} onClick={props.onClick}>
+    <div className={cx("main button", { disabled: props.disabled })} style={style} onClick={handleOnClick}>
       { props.children }
     </div>
   )

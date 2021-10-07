@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 
 from auto_bartender.hardware import controller
+from auto_bartender.core.recipe import Recipe
 from auto_bartender.server.app import app
 from auto_bartender.server.helpers import required_properties, error 
 from auto_bartender.server.services.recipe import recipe_service
@@ -54,7 +55,34 @@ def recipes_delete():
 #################
 # POST /recipes #
 #################
-# TODO: Create a recipe
+# Creates a recipe
+@required_properties("name", "ingredients")
 def recipes_post():
-    recipes = recipe_service.get_recipes()
-    return jsonify([ x.to_json() for x in recipes ])
+    content = request.json
+    existing_recipe = recipe_service.find_recipe(content['name'])
+
+    if existing_recipe is not None:
+        return error({
+            'message': "This recipe name already exists", 
+            'data': [ content['name'] ]
+        }, 409)
+
+    recipe_service.create_recipe(content)
+
+    return jsonify({}), 201
+
+
+
+def ingredients_delete():
+    content = request.json
+    ingredient = find_ingredient(lambda i: i.name == content['name'])
+
+    if ingredient is None:
+        return error({
+            'message': "The requested ingredient could not be found", 
+            'data': [ content['name'] ]
+        }, 404)
+
+    remove_ingredient(ingredient)
+
+    return jsonify({}), 200

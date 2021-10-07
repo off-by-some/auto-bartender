@@ -66,7 +66,7 @@ export default function SettingsPage() {
 
           <Card onClick={onClickAddRecipe}>
             <Icon name="change" />
-            <p className="secondary">Add Recipes</p>
+            <p className="secondary">Manage Recipes</p>
           </Card>
         </Grid>
       </ScrollableView>

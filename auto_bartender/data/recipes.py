@@ -17,7 +17,7 @@ def add_recipe(recipe):
   if len(existing_recipes) != 0:
     return
 
-  recipes = _read_recipes()
+  recipes = list(get_recipes())
   recipes.append(recipe)
   _save_recipes([ x.to_json() for x in recipes ])
 

@@ -13,6 +13,10 @@ class Recipes {
         return ApiClient.delete('/recipes', { data: { name: recipeName }})
     }
 
+    create(recipeName, ingredients) {
+        return ApiClient.post('/recipes', { name: recipeName, ingredients })
+    }
+
     async pour(recipe) {
         const response = await ApiClient.post('/pour', { ingredients: recipe.ingredients })
 

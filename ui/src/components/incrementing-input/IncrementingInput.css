@@ -1,0 +1,12 @@
+
+.incrementing-input button {
+    height: 53px;
+    width: 53px;
+    font-size: 20px;
+}
+
+.incrementing-input .value {
+    width: 45px;
+    justify-content: center;
+    display: flex;
+}

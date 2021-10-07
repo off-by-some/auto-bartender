@@ -1,0 +1,30 @@
+.line-item.ingredient-line-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.line-item.ingredient-line-item .amount {
+    display: flex;
+}
+
+.line-item.ingredient-line-item .title {
+    display: flex;
+    align-items: center;
+}
+
+.line-item.ingredient-line-item .title .icon {
+    margin-right: 40px;
+}
+
+.line-item.ingredient-line-item .title .icon,.line-item.ingredient-line-item .title .icon svg {
+    height: 20px;
+    width: 20px;
+}
+
+.line-item.ingredient-line-item .incrementing-input  {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+}

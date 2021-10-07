@@ -10,11 +10,6 @@
         "unit": null
     },
     {
-        "name": "Rum (White)",
-        "recipe_count": 1,
-        "unit": null
-    },
-    {
         "name": "Triple sec",
         "recipe_count": 1,
         "unit": null
@@ -37,6 +32,31 @@
     {
         "name": "Vanilla Vodka",
         "recipe_count": 1,
+        "unit": null
+    },
+    {
+        "name": "Gin",
+        "recipe_count": 1,
+        "unit": null
+    },
+    {
+        "name": "Tequila",
+        "recipe_count": 2,
+        "unit": null
+    },
+    {
+        "name": "Sprite",
+        "recipe_count": 1,
+        "unit": null
+    },
+    {
+        "name": "Light Rum",
+        "recipe_count": 1,
+        "unit": null
+    },
+    {
+        "name": "Sweet and Sour",
+        "recipe_count": 2,
         "unit": null
     }
 ]

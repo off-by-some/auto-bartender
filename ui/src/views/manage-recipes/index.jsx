@@ -100,7 +100,7 @@ export default class ManageRecipes extends React.Component {
                 />
               }
               <div className="ingredients-list">
-                <ScrollableView height="inherit">
+                <ScrollableView height="210px">
                   { this.state.selected && this.state.selected.ingredients.map((ingredient) => {
                     return <li key={ingredient.name}>{convertUnitToShots(ingredient.unit)} shot(s) of {ingredient.name}</li>
                   })}

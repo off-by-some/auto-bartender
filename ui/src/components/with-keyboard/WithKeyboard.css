@@ -1,0 +1,21 @@
+#keyboard-container .react-simple-keyboard {
+    position: absolute;
+    right: 0;
+    left: 0;
+    height: 0;
+    padding: 0;
+}
+
+
+#keyboard-container .dismiss-zone {
+    height: 52%;
+    position: absolute;
+    width: 100%;
+    top: 0;
+}
+
+#keyboard-container.open .react-simple-keyboard {
+    height: auto;
+    bottom: 0;
+    padding: 5px;
+}

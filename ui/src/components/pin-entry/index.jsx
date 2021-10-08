@@ -3,62 +3,33 @@ import PropTypes from "prop-types"
 import Modal from "../modal";
 import Header from '../header';
 import ReactCodeInput from 'react-code-input';
+import Input from '../input'
 import "./PinEntry.css";
 
-class PinEntryModal extends React.Component {
-  constructor(props) {
-    super(props);
+const PASSWORD = "sanabab";
 
-    this.onChangeInput = this.onChangeInput.bind(this);
-    this.createInput = this.createInput.bind(this);
-    this.state = {
-      resetting: false
+function PinEntryModal(props) {
+  const [ inputValue, setInputValue ] = React.useState('');
+
+  const handleChangeForInput = (e) => {
+    const value = e.target.value;
+    setInputValue(value);
+    if (value === PASSWORD) {
+      props.onSubmit()
     }
-  }
+  };
 
-  onChangeInput(pin) {
-    if (pin.length !== this.props.fields) return;
-    console.log("submitting", pin)
-    this.props.onSubmit(pin)
-
-    // Reset the pin input and propagate the entire password up
-    this.setState({ resetting: true })
-  }
-
-  // TODO: Fix me, this is a hack to reset the state of the input
-  componentDidUpdate() {
-    if (this.state.resetting === true) {
-      this.setState({ resetting: false });
-    }
-  }
-
-  createInput() {
-    if (this.state.resetting) return;
-
-    return (
-      <ReactCodeInput
-        type='password'
-        fields={this.props.fields}
-        onChange={this.onChangeInput}
-        onSubmit={this.onChangeInput}
-    />
-    )
-  }
-
-  render() {
-    return (
-      <Modal id="pin-entry">
-        <Header main="Enter Password" />
-        { this.createInput() }
-        <p></p>
-      </Modal>
-    );
-  }
+  return (
+    <Modal id="pin-entry" onClickBackground={props.onClose}>
+      <Header main="Enter Password" />
+      <Input type="password" value={inputValue} onChange={handleChangeForInput}/>
+    </Modal>
+  )
 }
 
 PinEntryModal.propTypes = {
-  fields: PropTypes.number.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
 }
 
 export default PinEntryModal

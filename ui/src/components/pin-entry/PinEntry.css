@@ -5,3 +5,9 @@
 #pin-entry p.main  {
   font-size: 16px;
 }
+
+
+#pin-entry input {
+  margin-bottom: 45px;
+  text-align: center;
+}

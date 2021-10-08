@@ -72,7 +72,7 @@
             },
             {
                 "name": "Lemon Juice",
-                "recipe_count": 3,
+                "recipe_count": 2,
                 "unit": {
                     "amount": 0.25,
                     "type": "shot"

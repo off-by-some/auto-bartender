@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import cx from "classnames";
 import React from 'react';
 import Recipe from "../../api/recipes";
@@ -23,9 +24,12 @@ export default class SelectDrink extends React.Component {
     super(props)
     this.onClickCard = this.onClickCard.bind(this);
     this.onClickFab = this.onClickFab.bind(this);
+    this.onClosePinModal = this.onClosePinModal.bind(this);
     this.onCompletePin = this.onCompletePin.bind(this);
     this.onClickSettings = this.onClickSettings.bind(this);
     this.resetState = this.resetState.bind(this);
+    
+    this.gridRef = React.createRef();
 
     this.initialState = {
       selected: null,
@@ -36,6 +40,7 @@ export default class SelectDrink extends React.Component {
       progress: 0,
       completedCounter: 3,
       completed: false,
+      containerRef: null,
     };
 
     this.state = { ...this.initialState };
@@ -114,9 +119,12 @@ export default class SelectDrink extends React.Component {
     this.setState({ showPin: true });
   }
 
-  // TODO: Actual password validation
   onCompletePin() {
     this.setState({ showPin: false, passwordSuccessful: true })
+  }
+
+  onClosePinModal() {
+    this.setState({ showPin: false });
   }
 
   render() {
@@ -126,7 +134,14 @@ export default class SelectDrink extends React.Component {
 
     const settingsIcon = <Icon name="settings" onClick={this.onClickSettings} />
     const selectedName = 
-      this.state.selected? this.state.selected.name : "";
+      this.state.selected ? this.state.selected.name : "";
+
+    // Force the selected item to the top of the grid
+    const selectedRecipe = this.state.recipes.find(x => selectedName === x.name);
+    const recipes = [ 
+      selectedRecipe, 
+      ...this.state.recipes.filter(x => x.name !== selectedName) 
+    ].filter(Boolean);
 
     const modalHeader = this.state.completed ?
       "Enjoy!" : `Pouring ${selectedName}`
@@ -136,8 +151,8 @@ export default class SelectDrink extends React.Component {
         <Header main="Select Drink" rightAction={settingsIcon}/>
         <SearchBar />
         <ScrollableView disabled={!!this.state.selected}>
-          <Grid>
-            { this.state.recipes.map(x =>
+          <Grid ref={this.handleContainerRef}>
+            { _.sortBy(recipes, 'name').map(x =>
               <CocktailCard
                 name={x.name}
                 ingredients={x.ingredients}
@@ -167,7 +182,7 @@ export default class SelectDrink extends React.Component {
         }
 
         { this.state.showPin &&
-          <PinEntry fields={6} onSubmit={this.onCompletePin} />
+          <PinEntry fields={6} onSubmit={this.onCompletePin} onClose={this.onClosePinModal} />
         }
       </div>
     );

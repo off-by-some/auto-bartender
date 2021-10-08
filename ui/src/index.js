@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from "react-dom";
 import {
   BrowserRouter as Router,
@@ -14,58 +14,60 @@ import AddIngredient from './views/add-ingredient';
 import AddRecipe from './views/add-recipe';
 import ManageIngredients from './views/manage-ingredients';
 import ManageRecipes from './views/manage-recipes';
+import WithKeyboard from './components/with-keyboard';
 
 require('typeface-roboto')
 
 function App() {
   return (
-    <Switch>
-      <Route
-        exact
-        path="/"
-        component={SelectDrink}
-      />
-      <Route
-        exact
-        path="/settings"
-        component={Settings}
-      />
-      <Route
-        exact
-        path="/cleaning-cycle"
-        component={CleaningCycle}
-      />
-      <Route
-        exact
-        path="/choose-ingredient"
-        component={ChooseIngredient}
-      />
-      <Route
-        path="/choose-ingredient/:id/success"
-        component={ChooseIngredient}
-      />
-      <Route
-        path="/choose-ingredient/:id/replace"
-        component={ChooseNewIngredient}
-      />
-      <Route
-        path="/add-ingredient"
-        component={AddIngredient}
-      />
-      <Route
-        path="/add-recipe"
-        component={AddRecipe}
-      />
-      <Route
-        path="/manage-ingredients"
-        component={ManageIngredients}
-      />
-      <Route
-        path="/manage-recipes"
-        component={ManageRecipes}
-      />
-    </Switch>
-
+    <WithKeyboard>
+      <Switch>
+        <Route
+          exact
+          path="/"
+          component={SelectDrink}
+        />
+        <Route
+          exact
+          path="/settings"
+          component={Settings}
+        />
+        <Route
+          exact
+          path="/cleaning-cycle"
+          component={CleaningCycle}
+        />
+        <Route
+          exact
+          path="/choose-ingredient"
+          component={ChooseIngredient}
+        />
+        <Route
+          path="/choose-ingredient/:id/success"
+          component={ChooseIngredient}
+        />
+        <Route
+          path="/choose-ingredient/:id/replace"
+          component={ChooseNewIngredient}
+        />
+        <Route
+          path="/add-ingredient"
+          component={AddIngredient}
+        />
+        <Route
+          path="/add-recipe"
+          component={AddRecipe}
+        />
+        <Route
+          path="/manage-ingredients"
+          component={ManageIngredients}
+        />
+        <Route
+          path="/manage-recipes"
+          component={ManageRecipes}
+        />
+      </Switch>
+    </WithKeyboard>
   );
 }
 

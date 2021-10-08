@@ -11,12 +11,16 @@ class CocktailCard extends React.Component {
     this.cardRef = React.createRef()
   }
 
+  // HACK: TODO: FIXME: PLEASE
   componentDidUpdate(prevProps) {
     const justDeselected = !this.props.selected && prevProps.selected;
     const currentlySelected = this.props.selected;
+    const grid = document.getElementsByClassName('scrollable')[0];
 
     if (currentlySelected || justDeselected) {
-      this.cardRef.current.scrollIntoView()
+      const yOffset = -200; 
+      const y = this.cardRef.current.getBoundingClientRect().top + yOffset;
+      grid.scrollTo({top: y, behavior: 'smooth'});
     }
   }
 

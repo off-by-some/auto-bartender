@@ -1,0 +1,15 @@
+# This file should be moved to /etc/xdg/openbox/autostart
+
+# Disable any form of screen
+xset s off
+xset s noblank
+xset -dpms
+
+# Allow termination with ctrl + alt + backspace
+setxkbmap -option terminate:ctrl_alt_bksp
+
+# Start Chrome in Kiosk Mode
+sed -i 's/"exited_cleanly":false/"exited_cleanly":true/' ~/.config/chromium/'Local State'
+sed -i 's/"exited_cleanly":false/"exited_cleanly":true/; s/"exit_type":"[^"]\+"/"exit_type":"Normal"/' ~/config/chromium/Default/Preferences
+
+chromium-browser --disable-infobars --kiosk 'http://localhost:3001'

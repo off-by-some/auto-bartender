@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+project_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )/../" > /dev/null && pwd )"
+
+(cd $project_dir && poetry install)
+
+(cd $project_dir/ui && yarn install && yarn build)
+
+mkdir $project_dir/auto_bartender/server/static
+
+mv ui/app $project_dir/auto_bartender/server/static

@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+# Performs first-time set up for raspbian lite.
+
+NODE_VERSION="14.16.1"
+NVM_VERSION="0.38.0"
+PYTHON_VERSION="3.8.6"
+
+NVM_DIR="/root/.nvm" 
+PYENV_ROOT="/root/.pyenv"
+NVM_VERSIONS_PATH=$NVM_DIR/versions/v$NODE_VERSION 
+PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PYENV_ROOT/versions/$PYTHON_VERSION/bin:/root/.poetry/bin:$PATH"
+NODE_PATH=$NVM_VERSIONS_PATH/lib/node_modules
+
+export PATH=$NVM_VERSIONS_PATH/bin:$PATH
+project_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )/../" > /dev/null && pwd )"
+
+# Install project dependencies
+sudo apt-get update && \
+    sudo apt-get install -y --no-install-recommends \
+    apt-transport-https lsb-release \
+    ca-certificates gcc g++ make curl git \
+    python3 python3-dev python3-setuptools \
+    python3-pip python3-numpy \
+    libnss3-dev git build-essential zlib1g-dev \
+    libssl-dev libffi-dev
+
+# Install System Dependencies
+sudo apt-get install --no-install-recommends \
+    xserver-xorg x11-xserver-utils xinit openbox chromium-browser
+
+echo "Installing nvm"
+mkdir ~/.nvm && \
+    curl https://raw.githubusercontent.com/creationix/nvm/v$NVM_VERSION/install.sh | bash \
+    && . $NVM_DIR/nvm.sh \
+    && nvm install $NODE_VERSION \
+    && nvm alias default $NODE_VERSION && \
+    npm install --global yarn
+
+echo "Installing Python..."
+git clone --depth=1 https://github.com/pyenv/pyenv.git $PYENV_ROOT && \
+    pyenv install $PYTHON_VERSION && \
+    pyenv global $PYTHON_VERSION
+
+echo "Installing Poetry"
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python - && \
+    poetry config virtualenvs.create false
+
+echo "Adding path entries to .bashrc"
+echo "" >> $HOME/.bashrc
+echo "export PATH=\"${PATH}\"" >> $HOME/.bashrc
+
+# Set up pi to launch UI on boot
+cp $project_dir/scripts/autostart /etc/xdg/openbox/autostart
+
+# Set up pi to launch API on boot
+cp $project_dir/auto-bartender.service /etc/systemd/system/auto-bartender.service
+
+sudo systemctl start auto-bartender
+sudo systemctl enable auto-bartender

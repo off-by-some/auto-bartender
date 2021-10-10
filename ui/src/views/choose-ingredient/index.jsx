@@ -65,7 +65,6 @@ export default function ChooseIngredient() {
     <div id="choose-ingredient">
       <Header
         main="Select an Ingredient to Change"
-        secondary={secondaryMessage}
         rightAction={<Icon name="close" onClick={onClickClose} />}
       />
 

@@ -22,7 +22,7 @@ function PinEntryModal(props) {
   return (
     <Modal id="pin-entry" onClickBackground={props.onClose}>
       <Header main="Enter Password" />
-      <Input type="password" value={inputValue} onChange={handleChangeForInput}/>
+      <Input type="password" value={inputValue} onChange={handleChangeForInput} placeholder=""/>
     </Modal>
   )
 }

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+export FLASK_ENV="production"
+
+project_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null && pwd)"
+
+(cd $project_dir && python -m auto_bartender.run)

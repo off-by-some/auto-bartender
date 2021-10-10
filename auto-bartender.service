@@ -1,0 +1,16 @@
+[Unit]
+Description="Auto Bartender API service"
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=pi
+WorkingDirectory=/home/pi/workspace/auto-bartender/
+ExecStart=/home/pi/.pyenv/shims/python -m auto_bartender.run
+Environment=FLASK_ENV=production
+
+[Install]
+WantedBy=multi-user.target

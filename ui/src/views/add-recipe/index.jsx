@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { useState } from 'react';
 import { Redirect } from "react-router-dom";
 import Header from "../../components/header";
@@ -149,7 +150,7 @@ export default class AddRecipe extends React.Component {
       return <Redirect to="/manage-recipes" />
     }
 
-    const addedIngredients = this.state.addedIngredients.sort((a, b) => a.name > b.name);
+    const addedIngredients = _.sortBy(this.state.addedIngredients, 'name');
     const ingredientsNotAdded = this.ingredientsNotAdded()
     const ingredientDrawerCn = cx("right", { 'open': this.state.showIngredientDrawer });
     const drawerBgCn = cx("background", { 'enabled': this.state.showIngredientDrawer });
@@ -210,7 +211,7 @@ export default class AddRecipe extends React.Component {
               <div className={ingredientDrawerCn}>
                 <p className="secondary">Tap an ingredient</p>
                 <ScrollableView height={this.state.showIngredientDrawer ? "415px": "0px"}>
-                  { ingredientsNotAdded.map((ingredient) => 
+                  { _.sortBy(ingredientsNotAdded, 'name').map((ingredient) => 
                     <LineItem 
                       key={ingredient.name}
                       main={ingredient.name}

@@ -115,7 +115,7 @@ export default class ManageIngredients extends React.Component {
           <div className="panel-container">
             <div className="left-panel">
               <ScrollableView>
-                { this.state.ingredients.map((ingredient) => 
+                { _.sortBy(this.state.ingredients, 'name').map((ingredient) => 
                   <LineItem 
                     key={ingredient.name}
                     main={ingredient.name}

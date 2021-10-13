@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import { Redirect } from "react-router-dom";
 import Header from "../../components/header";
@@ -82,7 +83,7 @@ export default class ManageRecipes extends React.Component {
           <div className="panel-container">
             <div className="left-panel">
               <ScrollableView>
-                { this.state.recipes.map((recipe) => 
+                { _.sortBy(this.state.recipes, 'name').map((recipe) => 
                   <LineItem 
                     key={recipe.name}
                     main={recipe.name}

@@ -5,6 +5,18 @@ import React from 'react';
 import "./CocktailCard.css";
 import { convertUnitToShots } from "../../util";
 
+class RandomImage extends React.Component {
+  constructor() {
+    super();
+
+    this.imgSrc = `http://localhost:3001/images/random?${Date.now() + Math.random()}`
+  }
+
+  render() {
+    return <img src={this.imgSrc} />
+  }
+}
+
 class CocktailCard extends React.Component {
   constructor(props) {
     super(props)
@@ -52,7 +64,7 @@ class CocktailCard extends React.Component {
 
     return (
     <div ref={this.cardRef} className={selectedCn} onClick={onClick}>
-      <img src="https://picsum.photos/200/300" />
+      <RandomImage />
 
       { !this.props.selected &&
           <div className="info-bg">

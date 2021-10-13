@@ -12,9 +12,9 @@ class Unit:
 
     def toMil(self):
         unit_conversion_map = {
-            "cup": self.amount / ML_IN_CUP,
+            "cup": self.amount * ML_IN_CUP,
             "ml": self.amount,
-            "shot": self.amount / ML_IN_SHOT,
+            "shot": self.amount * ML_IN_SHOT,
         }
 
         return unit_conversion_map[self.type]

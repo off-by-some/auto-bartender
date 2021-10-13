@@ -5,7 +5,152 @@
         "unit": null
     },
     {
-        "name": "Bourbon",
+        "name": "Golden Rum",
+        "recipe_count": 0,
+        "unit": null
+    },
+    {
+        "name": "Dark Rum",
+        "recipe_count": 0,
+        "unit": null
+    },
+    {
+        "name": "Coconut Rum",
+        "recipe_count": 0,
+        "unit": null
+    },
+    {
+        "name": "Brandy",
+        "recipe_count": 0,
+        "unit": null
+    },
+    {
+        "name": "Absinthe",
+        "recipe_count": 0,
+        "unit": null
+    },
+    {
+        "name": "Amaro",
+        "recipe_count": 0,
+        "unit": null
+    },
+    {
+        "name": "Creme de Cacao",
+        "recipe_count": 0,
+        "unit": null
+    },
+    {
+        "name": "Creme de Cassis",
+        "recipe_count": 0,
+        "unit": null
+    },
+    {
+        "name": "Creme de Menthe",
+        "recipe_count": 0,
+        "unit": null
+    },
+    {
+        "name": "Crème de Mûre",
+        "recipe_count": 0,
+        "unit": null
+    },
+    {
+        "name": "Creme de Noyaux",
+        "recipe_count": 0,
+        "unit": null
+    },
+    {
+        "name": "Jagermeister",
+        "recipe_count": 0,
+        "unit": null
+    },
+    {
+        "name": "Galliano",
+        "recipe_count": 0,
+        "unit": null
+    },
+    {
+        "name": "Hpnotiq",
+        "recipe_count": 0,
+        "unit": null
+    },
+    {
+        "name": "Irish Cream",
+        "recipe_count": 0,
+        "unit": null
+    },
+    {
+        "name": "Licor 43",
+        "recipe_count": 0,
+        "unit": null
+    },
+    {
+        "name": "Limoncello",
+        "recipe_count": 0,
+        "unit": null
+    },
+    {
+        "name": "Maraschino Liqueur",
+        "recipe_count": 0,
+        "unit": null
+    },
+    {
+        "name": "Midori",
+        "recipe_count": 0,
+        "unit": null
+    },
+    {
+        "name": "Pastis",
+        "recipe_count": 0,
+        "unit": null
+    },
+    {
+        "name": "Pernod",
+        "recipe_count": 0,
+        "unit": null
+    },
+    {
+        "name": "Pimm’s",
+        "recipe_count": 0,
+        "unit": null
+    },
+    {
+        "name": "Apple Schnapps",
+        "recipe_count": 0,
+        "unit": null
+    },
+    {
+        "name": "Butterscotch Schnapps",
+        "recipe_count": 1,
+        "unit": null
+    },
+    {
+        "name": "Cinnamon Schnapps",
+        "recipe_count": 1,
+        "unit": null
+    },
+    {
+        "name": "Peach Schnapps",
+        "recipe_count": 1,
+        "unit": null
+    },
+    {
+        "name": "Peppermint Schnapps",
+        "recipe_count": 1,
+        "unit": null
+    },
+    {
+        "name": "Sloe Gin",
+        "recipe_count": 1,
+        "unit": null
+    },
+    {
+        "name": "St Germain",
+        "recipe_count": 1,
+        "unit": null
+    },
+    {
+        "name": "Suze",
         "recipe_count": 1,
         "unit": null
     },

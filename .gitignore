@@ -137,3 +137,5 @@ dmypy.json
 .pytype/
 
 ui/node_modules/*
+
+auto_bartender/server/static/images/*

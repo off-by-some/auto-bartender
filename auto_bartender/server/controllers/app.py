@@ -1,4 +1,5 @@
 import os
+import random
 from flask import Flask, send_from_directory
 from auto_bartender.server.app import app
 
@@ -21,3 +22,21 @@ def serve(path):
         return send_from_directory(react_dist_folder, path)
 
     return send_from_directory(react_dist_folder, 'index.html')
+
+
+def random_image(img_dir):
+    """
+    Return a random image from the ones in the static/ directory
+    """
+    img_list = os.listdir(img_dir)
+    img_path = os.path.join(img_dir, random.choice(img_list))
+    return img_path
+
+
+@app.route('/images/random')
+def serve_images():
+    base_path = f"{app.static_folder}/images"
+    img_list = os.listdir(base_path)
+    img_name = random.choice(img_list)
+    print(f"{base_path}/{img_name}")
+    return send_from_directory(base_path, img_name)

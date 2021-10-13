@@ -22,6 +22,7 @@ export default function ChooseNewIngredient() {
   const [selectedItem, setSelectedItem] = useState("");
   const [saved, setSaved] = useState(false);
   const [selectedPump, setSelectedPump] = useState({});
+  const [pumps, setPumps] = useState([]);
   const [ingredients, setIngredients] = useState([]);
   const [loaded, setLoaded] = useState(false)
 
@@ -34,17 +35,22 @@ export default function ChooseNewIngredient() {
       const selectedPump = pumps.find(pump => pump.name === params.id);
 
       setSelectedPump(selectedPump);
+      setPumps(pumps);
       setIngredients(ingredients);
       setLoaded(true);
 
     })();
   })
 
-  const searchableIngredients = ingredients.map(x => {
+  const ingredientsInPumps = pumps.map(x => x.ingredient?.name).filter(Boolean);
+  const shapedIngredients = ingredients.map(x => {
     x.key = x.name;
     return x;
   })
 
+  const searchableIngredients = shapedIngredients.filter(
+    (x) => !ingredientsInPumps.includes(x.name)
+  )
 
   const onClickModalBackground = (e) => setShowModal(false)
   const onClickConfirmFab = () => setShowModal(true)

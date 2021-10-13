@@ -138,9 +138,10 @@ export default class SelectDrink extends React.Component {
 
     // Force the selected item to the top of the grid
     const selectedRecipe = this.state.recipes.find(x => selectedName === x.name);
+    const currentRecipes = this.state.recipes.filter(x => x.name !== selectedName) 
     const recipes = [ 
       selectedRecipe, 
-      ...this.state.recipes.filter(x => x.name !== selectedName) 
+      ..._.sortBy(currentRecipes, 'name')
     ].filter(Boolean);
 
     const modalHeader = this.state.completed ?
@@ -152,7 +153,7 @@ export default class SelectDrink extends React.Component {
         <SearchBar />
         <ScrollableView disabled={!!this.state.selected}>
           <Grid ref={this.handleContainerRef}>
-            { _.sortBy(recipes, 'name').map(x =>
+            { recipes.map(x =>
               <CocktailCard
                 name={x.name}
                 ingredients={x.ingredients}

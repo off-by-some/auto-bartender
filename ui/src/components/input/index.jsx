@@ -71,6 +71,7 @@ class Input extends React.Component {
         className={"secondary " + this.props.className}
         onFocus={this.onFocus}
         onBlur={this.onBlur}
+        onClick={this.onFocus}
         value={this.state.inputValue}
         placeholder={this.props.placeholder}
         {...this.props}
